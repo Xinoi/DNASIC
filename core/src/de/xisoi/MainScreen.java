@@ -13,7 +13,7 @@ public class MainScreen extends ScreenAdapter {
 
     public MainScreen() {
        batch = new SpriteBatch();
-       img = new Texture("starter-ship-red.png");
+       img = new Texture("Ship/1_Triebwerke/Blaues_Schiff/0Rot1Blau.png");
     }
 
     @Override
