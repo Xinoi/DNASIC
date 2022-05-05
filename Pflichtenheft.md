@@ -23,3 +23,16 @@
 - Endless-Mode
 ## Meilensteine
 ## Arbeitseinteilung
+### Johannes
+- Backend
+- Frontend
+- Gestalten der Screens
+- Steuerung Raumschiff basic
+### Jonas
+- Grafik
+- Backend
+- Physics-Engine
+### Jan
+- Backend
+- Datenbankanbindung
+- (Frontend)
