@@ -38,3 +38,4 @@
 - Datenbankanbindung
 - (Frontend)
 - Musik
+- Soundeffekte
