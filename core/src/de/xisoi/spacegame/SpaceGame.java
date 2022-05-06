@@ -2,11 +2,11 @@ package de.xisoi.spacegame;
 
 import com.badlogic.gdx.Game;
 
-public class MyGame extends Game {
+public class SpaceGame extends Game {
 
-	public static MyGame INSTANCE = new MyGame();
+	public static SpaceGame INSTANCE = new SpaceGame();
 
-	public MyGame() {
+	public SpaceGame() {
 		INSTANCE = this;
 	}
 
