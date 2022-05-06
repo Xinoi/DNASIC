@@ -2,18 +2,24 @@ package de.xisoi.spacegame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class MainScreen extends ScreenAdapter {
 
-    SpriteBatch batch;
-    Texture img;
+    private SpriteBatch batch;
+    private Texture img;
+    private Music bgMusic;
 
     public MainScreen() {
        batch = new SpriteBatch();
        img = new Texture("Ship/1_Triebwerke/Blaues_Schiff/0Rot1Blau.png");
+
+       bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Startmenu.wav"));
+       bgMusic.setLooping(true);
+       bgMusic.play();
     }
 
     @Override
