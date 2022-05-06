@@ -21,6 +21,7 @@
 - Erweiterte KI für Gegner
 - Einstellungsmöglichkeiten (-> Schwierigkeitsmodus, etc.)
 - Endless-Mode
+- verschiedene Hintergründe pro Level
 ## Meilensteine
 ## Arbeitseinteilung
 ### Johannes
