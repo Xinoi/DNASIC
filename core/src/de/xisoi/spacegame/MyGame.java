@@ -1,7 +1,6 @@
-package de.xisoi;
+package de.xisoi.spacegame;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.ScreenAdapter;
 
 public class MyGame extends Game {
 
