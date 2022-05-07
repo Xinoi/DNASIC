@@ -39,3 +39,4 @@
 - (Frontend)
 - Musik
 - Soundeffekte
+- Speichern von Spielstand, Einstellungen, etc.
