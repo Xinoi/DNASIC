@@ -25,18 +25,20 @@
 ## Meilensteine
 ## Arbeitseinteilung
 ### Johannes
-- Backend
-- Frontend
-- Gestalten der Screens
-- Steuerung Raumschiff basic
+- [Backend]
+- [Frontend]
+- Frame Architektur(Screens, Layouts, Skalierung, usw.)
+- Input managment
+- GameLoop und Threading
 ### Jonas
-- Grafik
-- Backend
+-[Backend]
+- Texturen und Animationen
 - Physics-Engine
+- Logik
 ### Jan
-- Backend
+- [Backend]
+- [(Frontend)]
 - Datenbankanbindung
-- (Frontend)
 - Musik
 - Soundeffekte
 - Speichern von Spielstand, Einstellungen, etc.
