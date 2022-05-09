@@ -25,19 +25,19 @@
 ## Meilensteine
 ## Arbeitseinteilung
 ### Johannes
-- [Backend]
-- [Frontend]
+[Backend]
+[Frontend]
 - Frame Architektur(Screens, Layouts, Skalierung, usw.)
 - Input managment
 - GameLoop und Threading
 ### Jonas
--[Backend]
+[Backend]
 - Texturen und Animationen
 - Physics-Engine
 - Logik
 ### Jan
-- [Backend]
-- [(Frontend)]
+[Backend]
+[(Frontend)]
 - Datenbankanbindung
 - Musik
 - Soundeffekte
