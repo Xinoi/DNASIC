@@ -11,7 +11,7 @@ button_down
   split: 0, 0, 0, 0
   orig: 41, 41
   offset: 0, 0
-  index: 9
+  index: -1
 button_up
   rotate: false
   xy: 2, 2
@@ -19,4 +19,4 @@ button_up
   split: 0, 0, 0, 0
   orig: 41, 41
   offset: 0, 0
-  index: 9
+  index: -1
