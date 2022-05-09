@@ -1,4 +1,4 @@
-package de.xisoi.spacegame;
+package de.jjj.spacegame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
