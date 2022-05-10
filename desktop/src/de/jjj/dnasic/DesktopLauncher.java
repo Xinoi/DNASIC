@@ -1,4 +1,4 @@
-package de.jjj.spacegame;
+package de.jjj.dnasic;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
@@ -11,6 +11,6 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setWindowedMode(1200, 800);
 		config.useVsync(true);
-		new Lwjgl3Application(new SpaceGame(), config);
+		new Lwjgl3Application(new DNASIC(), config);
 	}
 }

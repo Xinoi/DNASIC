@@ -1,4 +1,4 @@
-package de.jjj.spacegame;
+package de.jjj.dnasic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -16,8 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import java.awt.*;
 
 public class MenuScreen extends ScreenAdapter {
 
