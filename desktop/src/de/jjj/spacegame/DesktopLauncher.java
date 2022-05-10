@@ -7,7 +7,7 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setTitle("Space Game");
+		config.setTitle("D N A S I C");
 		config.setForegroundFPS(60);
 		config.setWindowedMode(1200, 800);
 		config.useVsync(true);

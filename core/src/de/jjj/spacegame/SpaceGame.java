@@ -12,7 +12,7 @@ public class SpaceGame extends Game {
 
 	@Override
 	public void create() {
-		this.setScreen(new MainScreen());
+		this.setScreen(new MenuScreen());
 	}
 
 }
