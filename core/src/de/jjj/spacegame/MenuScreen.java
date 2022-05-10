@@ -21,10 +21,10 @@ import java.awt.*;
 
 public class MenuScreen extends ScreenAdapter {
 
-    private float startButtonWidth = 200;
-    private float startButtonHeigth = 100;
-    private float startButtonx = Gdx.graphics.getWidth() / 2 - startButtonWidth/2;
-    private float startButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 2;
+    private float startButtonWidth;
+    private float startButtonHeigth;
+    private float startButtonx;
+    private float startButtony;
 
     private float settingsButtonWidth = 250;
     private float settingsButtonHeigth = 100;
@@ -51,6 +51,17 @@ public class MenuScreen extends ScreenAdapter {
     private TextButton.TextButtonStyle bStyle;
 
     public MenuScreen() {
+    	
+       startButtonWidth = 200;
+       startButtonHeigth = 100;
+       startButtonx = Gdx.graphics.getWidth() / 2 - startButtonWidth/2;
+       startButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 2;
+
+       settingsButtonWidth = 250;
+       settingsButtonHeigth = 100;
+       settingsButtonx = Gdx.graphics.getWidth() / 2 - settingsButtonWidth/2;
+       settingsButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 3;
+       
        batch = new SpriteBatch();
 
        titleFont = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
