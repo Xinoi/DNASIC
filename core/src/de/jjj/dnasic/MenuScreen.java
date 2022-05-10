@@ -149,6 +149,7 @@ public class MenuScreen extends ScreenAdapter {
         skin.addRegions(atlas);
         bStyle = new TextButton.TextButtonStyle();
         bStyle.font = titleFont;
+        bStyle.fontColor = Color.GRAY;
         bStyle.up = skin.getDrawable("button_up");
         bStyle.down = skin.getDrawable("button_down");
         bStyle.pressedOffsetX = 1;
