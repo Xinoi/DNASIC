@@ -22,6 +22,7 @@
 - Einstellungsmöglichkeiten (-> Schwierigkeitsmodus, etc.)
 - Endless-Mode
 - verschiedene Hintergründe pro Level
+- In-Game Konsole
 ## Meilensteine
 
 ## Arbeitseinteilung
