@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,6 +19,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class MenuScreen extends ScreenAdapter {
+
+    PlayerShip playerShip;
+    Texture playerTexture;
 
     private float startButtonWidth;
     private float startButtonHeigth;
@@ -74,6 +78,10 @@ public class MenuScreen extends ScreenAdapter {
        //create button Styles
        createButtonStyles();
 
+       //create Playership(test)
+        playerTexture = new Texture(Gdx.files.internal("Ship/1_Triebwerke/Blaues_Schiff/0Rot1Blau.png"));
+        playerShip = new PlayerShip(playerTexture, 100, 100);
+
        //create Buttons
         createStartButton();
        startB.addListener(new ChangeListener() {
@@ -97,7 +105,6 @@ public class MenuScreen extends ScreenAdapter {
 
        //add things to stage
        addActors();
-
     }
 
     @Override
@@ -107,6 +114,7 @@ public class MenuScreen extends ScreenAdapter {
         batch.begin();
         batch.end();
 
+        stage.act();
         stage.draw();
     }
 
@@ -120,7 +128,7 @@ public class MenuScreen extends ScreenAdapter {
 
     private void addActors() {
         Actor[] actors = {startB, settingsB, titleLabel};
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < actors.length - 1; i++) {
             stage.addActor(actors[i]);
         }
     }
