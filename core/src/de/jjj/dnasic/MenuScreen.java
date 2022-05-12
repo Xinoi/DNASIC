@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,9 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class MenuScreen extends ScreenAdapter {
-
-    PlayerShip playerShip;
-    Texture playerTexture;
 
     private float startButtonWidth;
     private float startButtonHeigth;
@@ -53,58 +49,55 @@ public class MenuScreen extends ScreenAdapter {
     private TextButton.TextButtonStyle bStyle;
 
     public MenuScreen() {
-    	
-       startButtonWidth = 200;
-       startButtonHeigth = 100;
-       startButtonx = Gdx.graphics.getWidth() / 2 - startButtonWidth/2;
-       startButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 2;
 
-       settingsButtonWidth = 250;
-       settingsButtonHeigth = 100;
-       settingsButtonx = Gdx.graphics.getWidth() / 2 - settingsButtonWidth/2;
-       settingsButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 3;
-       
-       batch = new SpriteBatch();
+        startButtonWidth = 200;
+        startButtonHeigth = 100;
+        startButtonx = Gdx.graphics.getWidth() / 2 - startButtonWidth/2;
+        startButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 2;
 
-       titleFont = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
+        settingsButtonWidth = 250;
+        settingsButtonHeigth = 100;
+        settingsButtonx = Gdx.graphics.getWidth() / 2 - settingsButtonWidth/2;
+        settingsButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 3;
 
-       //set a stage
-       stage = new Stage();
-       Gdx.input.setInputProcessor(stage);
+        batch = new SpriteBatch();
 
-       //create title
+        titleFont = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
+
+        //set a stage
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+
+        //create title
         createTitle();
 
-       //create button Styles
-       createButtonStyles();
+        //create button Styles
+        createButtonStyles();
 
-       //create Playership(test)
-        playerTexture = new Texture(Gdx.files.internal("Ship/1_Triebwerke/Blaues_Schiff/0Rot1Blau.png"));
-        playerShip = new PlayerShip(playerTexture, 100, 100);
-
-       //create Buttons
+        //create Buttons
         createStartButton();
-       startB.addListener(new ChangeListener() {
-           @Override
-           public void changed(ChangeEvent event, Actor actor) {
+        startB.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
 
-           }
-       });
-       createSettingsButton();
-       settingsB.addListener(new ChangeListener() {
-           @Override
-           public void changed(ChangeEvent event, Actor actor) {
+            }
+        });
+        createSettingsButton();
+        settingsB.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
 
-           }
-       });
+            }
+        });
 
-       //background Music
-       bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Startmenu.wav"));
-       bgMusic.setLooping(true);
-       bgMusic.play();
+        //background Music
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Startmenu.wav"));
+        bgMusic.setLooping(true);
+        bgMusic.play();
 
-       //add things to stage
-       addActors();
+        //add things to stage
+        addActors();
+
     }
 
     @Override
@@ -114,7 +107,6 @@ public class MenuScreen extends ScreenAdapter {
         batch.begin();
         batch.end();
 
-        stage.act();
         stage.draw();
     }
 
@@ -128,7 +120,7 @@ public class MenuScreen extends ScreenAdapter {
 
     private void addActors() {
         Actor[] actors = {startB, settingsB, titleLabel};
-        for(int i = 0; i < actors.length - 1; i++) {
+        for(int i = 0; i < 3; i++) {
             stage.addActor(actors[i]);
         }
     }
