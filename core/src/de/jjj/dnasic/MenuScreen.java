@@ -79,7 +79,7 @@ public class MenuScreen extends ScreenAdapter {
         startB.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                DNASIC.INSTANCE.setScreen(new LevelScreen());
             }
         });
         createSettingsButton();
@@ -101,7 +101,7 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     @Override
-    public void render(float render) {
+    public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
 
         batch.begin();
