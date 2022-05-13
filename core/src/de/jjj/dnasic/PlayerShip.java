@@ -23,9 +23,9 @@ public class PlayerShip extends Sprite {
         return y;
     }
 
-    public void setCoords(float xN, float yN) {
-        x = xN;
-        y = yN;
+    public void setCoords(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void move(char direction, float amount) {
