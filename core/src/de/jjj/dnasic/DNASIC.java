@@ -22,7 +22,7 @@ public class DNASIC extends Game {
 
 	// Save game data to disk
 	public void saveGameData(GameData data){
-		String dataString = json.toJson(data);
+		String dataString = this.json.toJson(data);
 		FileHandle file = com.badlogic.gdx.Gdx.files.local("assets/GameData/save.json");
 		file.writeString(dataString, false);
 	}
@@ -31,6 +31,6 @@ public class DNASIC extends Game {
 	public GameData loadGameData(){
 		FileHandle file = com.badlogic.gdx.Gdx.files.local("assets/GameData/save.json");
 		String dataString = file.readString();
-		return json.fromJson(GameData.class, dataString);
+		return this.json.fromJson(GameData.class, dataString);
 	}
 }

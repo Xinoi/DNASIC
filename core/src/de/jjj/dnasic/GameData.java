@@ -2,7 +2,6 @@ package de.jjj.dnasic;
 
 public class GameData {
     private int highscore;
-    private String test;
 
     public int getHighscore() {
         return this.highscore;
