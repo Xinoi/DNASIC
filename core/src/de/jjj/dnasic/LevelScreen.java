@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -19,8 +20,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-
-import java.awt.event.InputEvent;
 
 public class LevelScreen extends ScreenAdapter {
 
@@ -51,6 +50,13 @@ public class LevelScreen extends ScreenAdapter {
         lvl2 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl2.png")));
         lvl3 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl3.png")));
 
+        lvl1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("lvl 1 was clicked!");
+            }
+        });
+
         selectText = new Label("select level with the arrow keys", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt")), Color.WHITE));
 
         table.add(selectText).padBottom(50).padLeft(50).colspan(2);
@@ -66,12 +72,6 @@ public class LevelScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(new Color(Color.BLACK));
-
-        if(Gdx.input.getX() >= lvl1.getX() && Gdx.input.getX() <= lvl1.getX() + lvl1.getImageWidth() && Gdx.input.getY() >= lvl1.getY() && Gdx.input.getY() <= lvl1.getY() + lvl1.getImageHeight()) {
-            if(Gdx.input.isTouched()) {
-                System.out.println("lvl 1 is touiched");
-            }
-        }
 
         stage.act(delta);
         stage.draw();
