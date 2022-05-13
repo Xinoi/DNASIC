@@ -9,10 +9,10 @@ public class PlayerShip extends Sprite {
     private float x;
     private float y;
 
-    public PlayerShip(TextureRegion shipSkin, float xN, float yN) {
+    public PlayerShip(TextureRegion shipSkin, float x, float y) {
         super(shipSkin);
-        x = xN;
-        y = yN;
+        this.x = x;
+        this.y = y;
         super.setPosition(x, y);
     }
 
