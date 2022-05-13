@@ -1,42 +1,40 @@
 
-PlayerShip.png
+Player_Ship.png
 size: 229, 72
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-Ship
+Ship_4
   rotate: false
   xy: 2, 9
   size: 73, 61
-  split: 0, 0, 0, 0
-  pad: 0, 0, 0, 0
   orig: 73, 61
   offset: 0, 0
   index: 4
-Ship
+Ship_2
   rotate: false
   xy: 77, 2
   size: 44, 68
-  split: 2, 2, 1, 1
-  pad: 2, 2, 1, 1
+  split: 2, 2, 0, 1
+  pad: 0, 2, 1, 1
   orig: 44, 68
   offset: 0, 0
   index: 2
-Ship
+Ship_3
   rotate: false
   xy: 123, 30
   size: 62, 40
-  split: 1, 1, 1, 6
-  pad: 1, 1, 1, 6
+  split: 0, 1, 1, 0
+  pad: 1, 1, 1, 7
   orig: 62, 40
   offset: 0, 0
   index: 3
-Ship
+Ship_1
   rotate: false
   xy: 187, 10
   size: 40, 60
-  split: 2, 2, 3, 2
-  pad: 2, 2, 3, 2
+  split: 0, 2, 3, 0
+  pad: 2, 0, 0, 2
   orig: 40, 60
   offset: 0, 0
   index: 1
