@@ -114,5 +114,8 @@ Thumbs.db
 /ios/IOSLauncher.app
 /ios/IOSLauncher.app.dSYM
 
-#all lock files
+# all lock files
 *.lock
+
+# Savegame files
+/assets/GameData/*
