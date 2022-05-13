@@ -97,7 +97,6 @@ public class MenuScreen extends ScreenAdapter {
 
         //add things to stage
         addActors();
-
     }
 
     @Override
