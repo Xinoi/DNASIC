@@ -25,10 +25,10 @@ public class MenuScreen extends ScreenAdapter {
     private float startButtonx;
     private float startButtony;
 
-    private float settingsButtonWidth = 250;
-    private float settingsButtonHeigth = 100;
-    private float settingsButtonx = Gdx.graphics.getWidth() / 2 - settingsButtonWidth/2;
-    private float settingsButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 3;
+    private float settingsButtonWidth;
+    private float settingsButtonHeigth;
+    private float settingsButtonx;
+    private float settingsButtony;
 
     private SpriteBatch batch;
     private Music bgMusic;
@@ -98,7 +98,6 @@ public class MenuScreen extends ScreenAdapter {
 
         //add things to stage
         addActors();
-
     }
 
     @Override

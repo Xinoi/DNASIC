@@ -1,0 +1,75 @@
+
+NPC_Ship.png
+size: 222, 255
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Ship_6
+  rotate: false
+  xy: 2, 124
+  size: 90, 129
+  split: 0, 2, 0, 12
+  pad: 4, 2, 10, 12
+  orig: 90, 129
+  offset: 0, 0
+  index: 6
+Ship_8
+  rotate: false
+  xy: 94, 114
+  size: 68, 139
+  split: 0, 1, 0, 9
+  pad: 2, 1, 2, 9
+  orig: 68, 139
+  offset: 0, 0
+  index: 8
+Ship_2
+  rotate: false
+  xy: 2, 22
+  size: 75, 100
+  split: 0, 4, 0, 100
+  pad: 5, 4, 7, 14
+  orig: 75, 100
+  offset: 0, 0
+  index: 2
+Ship_1
+  rotate: false
+  xy: 79, 37
+  size: 75, 75
+  split: 0, 2, 0, 8
+  pad: 4, 2, 9, 8
+  orig: 75, 75
+  offset: 0, 0
+  index: 1
+Ship_4
+  rotate: false
+  xy: 164, 173
+  size: 50, 80
+  split: 1, 0, 0, 80
+  pad: 1, 0, 5, 11
+  orig: 50, 80
+  offset: 0, 0
+  index: 3
+Ship_7
+  rotate: false
+  xy: 164, 98
+  size: 56, 73
+  split: 6, 4, 2, 3
+  orig: 56, 73
+  offset: 0, 0
+  index: 7
+Ship_3
+  rotate: false
+  xy: 156, 16
+  size: 50, 80
+  split: 0, 6, 0, 6
+  pad: 1, 6, 3, 6
+  orig: 50, 80
+  offset: 0, 0
+  index: 4
+Ship_5
+  rotate: false
+  xy: 2, 2
+  size: 24, 18
+  orig: 24, 18
+  offset: 0, 0
+  index: 5

@@ -1,4 +1,4 @@
-# Pflichtenheft - Space Game
+# Pflichtenheft - DNASIC
 ## Kurzbeschreibung
 - Setting: Weltraum
 - Rumfliegen
