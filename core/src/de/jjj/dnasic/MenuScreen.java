@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class MenuScreen extends ScreenAdapter {
@@ -79,7 +80,7 @@ public class MenuScreen extends ScreenAdapter {
         startB.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                DNASIC.INSTANCE.setScreen(new LevelScreen());
             }
         });
         createSettingsButton();
@@ -100,12 +101,13 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     @Override
-    public void render(float render) {
-        ScreenUtils.clear(0, 0, 0, 1);
+    public void render(float delta) {
+        ScreenUtils.clear(new Color(Color.BLACK));
 
         batch.begin();
         batch.end();
 
+        stage.act(delta);
         stage.draw();
     }
 
