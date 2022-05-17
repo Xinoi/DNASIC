@@ -47,15 +47,27 @@ public class LevelScreen extends ScreenAdapter {
         table.setFillParent(true);
 
         lvl1 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl1.png")));
-        lvl2 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl2.png")));
-        lvl3 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl3.png")));
-
         lvl1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("lvl 1 was clicked!");
             }
         });
+        lvl2 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl2.png")));
+        lvl2.addListener(new ClickListener() {
+        	@Override
+        	public void clicked(InputEvent event, float x, float y) {
+        		System.out.println("lvl2 was clicked");
+        	}
+        });
+        lvl3 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl3.png")));
+        lvl3.addListener(new ClickListener() {
+        	@Override
+        	public void clicked(InputEvent event, float x, float y) {
+        		System.out.println("lvl3 was clicked");
+        	}
+        });
+
 
         selectText = new Label("select level with the arrow keys", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt")), Color.WHITE));
 
