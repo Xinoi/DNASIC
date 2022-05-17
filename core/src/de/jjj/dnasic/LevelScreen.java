@@ -50,7 +50,7 @@ public class LevelScreen extends ScreenAdapter {
         lvl1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("lvl 1 was clicked!");
+                System.out.println("lvl1 was clicked!");
             }
         });
         lvl2 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl2.png")));
