@@ -65,17 +65,17 @@ public class MenuScreen extends ScreenAdapter {
 
         titleFont = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
 
-        //set a stage
+        // set a stage
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        //create title
+        // create title
         createTitle();
 
-        //create button Styles
+        // create button Styles
         createButtonStyles();
 
-        //create Buttons
+        // create Buttons
         createStartButton();
         startB.addListener(new ChangeListener() {
             @Override
@@ -91,13 +91,18 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
 
-        //background Music
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Startmenu.wav"));
+        // background Music
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel – Alex-Productions.mp3"));
         bgMusic.setLooping(true);
         bgMusic.play();
 
-        //add things to stage
+        // add things to stage
         addActors();
+    }
+
+    @Override
+    public void hide() {
+        bgMusic.stop();
     }
 
     @Override
