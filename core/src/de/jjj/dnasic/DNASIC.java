@@ -46,9 +46,13 @@ public class DNASIC extends Game {
 
 	// Load game data from disk
 	public GameData loadGameData(){
-		FileHandle file = com.badlogic.gdx.Gdx.files.local("assets/GameData/save.json");
-		String dataString = file.readString();
-		return this.json.fromJson(GameData.class, dataString);
+        try{
+            FileHandle file = com.badlogic.gdx.Gdx.files.local("assets/GameData/save.json");
+            String dataString = file.readString();
+            return this.json.fromJson(GameData.class, dataString);
+        }catch(Exception e){
+            return new GameData();
+        }
 	}
 
     // Save settings to disk
@@ -60,8 +64,12 @@ public class DNASIC extends Game {
 
     // Load settings from disk
     private Settings loadSettings(){
-        FileHandle file = com.badlogic.gdx.Gdx.files.local("assets/settings.json");
-        String dataString = file.readString();
-        return this.json.fromJson(Settings.class, dataString);
+        try{
+            FileHandle file = com.badlogic.gdx.Gdx.files.local("assets/settings.json");
+            String dataString = file.readString();
+            return this.json.fromJson(Settings.class, dataString);
+        }catch(Exception e){
+            return new Settings();
+        }
     }
 }
