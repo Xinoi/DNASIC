@@ -81,7 +81,7 @@ public class LevelScreen extends ScreenAdapter {
         table.add(lvl3);
 
         // background Music
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid – KV.mp3"));
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
         bgMusic.play();
