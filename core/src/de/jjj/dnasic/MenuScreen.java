@@ -92,7 +92,7 @@ public class MenuScreen extends ScreenAdapter {
         });
 
         // background Music
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel – Alex-Productions.mp3"));
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
         bgMusic.play();
