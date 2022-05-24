@@ -87,7 +87,7 @@ public class MenuScreen extends ScreenAdapter {
         settingsB.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                DNASIC.INSTANCE.setScreen(new SettingsScreen());
             }
         });
 
@@ -121,6 +121,7 @@ public class MenuScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
+        stage.dispose();
         batch.dispose();
         titleFont.dispose();
         atlas.dispose();

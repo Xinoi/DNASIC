@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class LevelScreen extends ScreenAdapter {
+public class  LevelScreen extends ScreenAdapter {
 
     private Stage stage;
     private Table table;
