@@ -84,7 +84,9 @@ public class LevelScreen extends ScreenAdapter {
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
-        bgMusic.play();
+        if(DNASIC.INSTANCE.getSettings().getMusic()) {
+            bgMusic.play();
+        }
 
         stage.addActor(table);
     }

@@ -73,4 +73,9 @@ public class DNASIC extends Game {
             return new Settings();
         }
     }
+
+    // Get current settings
+    public Settings getSettings(){
+        return this.settings;
+    }
 }

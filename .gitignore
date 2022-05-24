@@ -119,3 +119,6 @@ Thumbs.db
 
 # Savegame files
 /assets/GameData/*
+
+# Settings
+/assets/settings.json

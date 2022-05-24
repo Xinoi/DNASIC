@@ -1,7 +1,7 @@
 package de.jjj.dnasic;
 
 public class Settings {
-    private boolean music;
+    private boolean music = true;
 
     public void setMusic(boolean music){
         this.music = music;
