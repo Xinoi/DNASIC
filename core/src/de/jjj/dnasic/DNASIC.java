@@ -33,6 +33,7 @@ public class DNASIC extends Game {
     @Override
     public void pause() {
         this.saveSettings(this.settings);
+        this.saveGameData(this.data);
 
         super.pause();
     }
