@@ -2,6 +2,7 @@ package de.jjj.dnasic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,6 +32,8 @@ public class LevelScreen extends ScreenAdapter {
     private Image lvl3;
 
     private Label selectText;
+
+    private Music bgMusic;
 
     BitmapFont font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
 
@@ -77,8 +80,18 @@ public class LevelScreen extends ScreenAdapter {
         table.add(lvl2);
         table.add(lvl3);
 
+        // background Music
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid – KV.mp3"));
+        bgMusic.setLooping(true);
+        bgMusic.setVolume(0.3f);
+        bgMusic.play();
 
         stage.addActor(table);
+    }
+
+    @Override
+    public void hide() {
+        bgMusic.stop();
     }
 
     @Override
