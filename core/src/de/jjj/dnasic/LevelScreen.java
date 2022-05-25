@@ -72,7 +72,7 @@ public class  LevelScreen extends ScreenAdapter {
         });
 
 
-        selectText = new Label("select level with the arrow keys", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt")), Color.WHITE));
+        selectText = new Label("select level by clicking on it", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt")), Color.WHITE));
 
         table.add(selectText).padBottom(50).padLeft(50).colspan(2);
         table.row();
