@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class LevelScreen extends ScreenAdapter {
+public class  LevelScreen extends ScreenAdapter {
 
     private Stage stage;
     private Table table;
@@ -81,12 +81,14 @@ public class LevelScreen extends ScreenAdapter {
         table.add(lvl3);
 
         // background Music
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid – KV.mp3"));
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
-        bgMusic.play();
+
+
 
         stage.addActor(table);
+        stage.addActor(DNASIC.INSTANCE.BackB);
     }
 
     @Override
@@ -98,6 +100,12 @@ public class LevelScreen extends ScreenAdapter {
     public void render(float delta) {
         ScreenUtils.clear(new Color(Color.BLACK));
 
+        if(DNASIC.INSTANCE.getSettings().getMusic()){
+            bgMusic.play();
+        }else {
+            bgMusic.stop();
+        }
+
         stage.act(delta);
         stage.draw();
     }
@@ -105,6 +113,8 @@ public class LevelScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
+        batch.dispose();
+        bgMusic.dispose();
     }
 
 }

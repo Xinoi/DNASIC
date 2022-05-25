@@ -87,15 +87,14 @@ public class MenuScreen extends ScreenAdapter {
         settingsB.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                DNASIC.INSTANCE.setScreen(new SettingsScreen());
             }
         });
 
         // background Music
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel – Alex-Productions.mp3"));
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
-        bgMusic.play();
 
         // add things to stage
         addActors();
@@ -110,6 +109,12 @@ public class MenuScreen extends ScreenAdapter {
     public void render(float delta) {
         ScreenUtils.clear(new Color(Color.BLACK));
 
+        if(DNASIC.INSTANCE.getSettings().getMusic()){
+            bgMusic.play();
+        }else {
+            bgMusic.stop();
+        }
+
         batch.begin();
         batch.end();
 
@@ -119,10 +124,12 @@ public class MenuScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
+        stage.dispose();
         batch.dispose();
         titleFont.dispose();
         atlas.dispose();
         skin.dispose();
+        bgMusic.dispose();
     }
 
     private void addActors() {
