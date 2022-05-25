@@ -84,11 +84,11 @@ public class  LevelScreen extends ScreenAdapter {
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
-        if(DNASIC.INSTANCE.getSettings().getMusic()) {
-            bgMusic.play();
-        }
+
+
 
         stage.addActor(table);
+        stage.addActor(DNASIC.INSTANCE.BackB);
     }
 
     @Override
@@ -100,6 +100,12 @@ public class  LevelScreen extends ScreenAdapter {
     public void render(float delta) {
         ScreenUtils.clear(new Color(Color.BLACK));
 
+        if(DNASIC.INSTANCE.getSettings().getMusic()){
+            bgMusic.play();
+        }else {
+            bgMusic.stop();
+        }
+
         stage.act(delta);
         stage.draw();
     }
@@ -107,6 +113,8 @@ public class  LevelScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
+        batch.dispose();
+        bgMusic.dispose();
     }
 
 }

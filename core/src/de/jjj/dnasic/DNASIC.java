@@ -1,7 +1,16 @@
 package de.jjj.dnasic;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Json;
 
 public class DNASIC extends Game {
@@ -9,18 +18,33 @@ public class DNASIC extends Game {
     private Settings settings;
     private GameData data;
 
+    public TextButton BackB;
+    private TextureAtlas atlas;
+    private Skin skin;
+    private TextButton.TextButtonStyle bStyle;
+
 	public static DNASIC INSTANCE = new DNASIC();
 
 	public DNASIC() {
 		INSTANCE = this;
 
-		this.json = new Json();
+        this.json = new Json();
 	}
 
 	@Override
 	public void create() {
         this.settings = this.loadSettings();
         this.data = this.loadGameData();
+
+        createButtonStyles();
+        BackB = new TextButton("  Back  ", bStyle);
+        BackB.setPosition(50, 50);
+        BackB.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                setScreen(new MenuScreen());
+            }
+        });
 
 		this.setScreen(new MenuScreen());
 	}
@@ -36,6 +60,19 @@ public class DNASIC extends Game {
         this.saveGameData(this.data);
 
         super.pause();
+    }
+
+    private void createButtonStyles() {
+        atlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
+        skin = new Skin();
+        skin.addRegions(atlas);
+        bStyle = new TextButton.TextButtonStyle();
+        bStyle.font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));;
+        bStyle.fontColor = Color.GRAY;
+        bStyle.up = skin.getDrawable("button_up");
+        bStyle.down = skin.getDrawable("button_down");
+        bStyle.pressedOffsetX = 1;
+        bStyle.pressedOffsetY = -1;
     }
 
     // Save game data to disk

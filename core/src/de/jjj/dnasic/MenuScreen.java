@@ -95,9 +95,6 @@ public class MenuScreen extends ScreenAdapter {
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
-        if(DNASIC.INSTANCE.getSettings().getMusic()){
-            bgMusic.play();
-        }
 
         // add things to stage
         addActors();
@@ -111,6 +108,12 @@ public class MenuScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(new Color(Color.BLACK));
+
+        if(DNASIC.INSTANCE.getSettings().getMusic()){
+            bgMusic.play();
+        }else {
+            bgMusic.stop();
+        }
 
         batch.begin();
         batch.end();
@@ -126,6 +129,7 @@ public class MenuScreen extends ScreenAdapter {
         titleFont.dispose();
         atlas.dispose();
         skin.dispose();
+        bgMusic.dispose();
     }
 
     private void addActors() {
