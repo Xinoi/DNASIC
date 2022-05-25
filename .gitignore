@@ -123,3 +123,6 @@ Thumbs.db
 # Settings
 /assets/settings.json
 settings.json
+
+# Second assets folder
+/assets/assets/*
