@@ -2,15 +2,18 @@ package de.jjj.dnasic;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Json;
 
 public class DNASIC extends Game {
@@ -22,6 +25,8 @@ public class DNASIC extends Game {
     private TextureAtlas atlas;
     private Skin skin;
     private TextButton.TextButtonStyle bStyle;
+
+    private Sound clickSound;
 
 	public static DNASIC INSTANCE = new DNASIC();
 
@@ -43,6 +48,15 @@ public class DNASIC extends Game {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 setScreen(new MenuScreen());
+            }
+        });
+
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Click.wav"));
+        BackB.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                clickSound.play();
+                return super.touchDown(event, x, y, pointer, button);
             }
         });
 

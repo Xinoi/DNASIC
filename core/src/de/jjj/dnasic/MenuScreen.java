@@ -3,11 +3,14 @@ package de.jjj.dnasic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -49,6 +52,8 @@ public class MenuScreen extends ScreenAdapter {
     private TextButton exitB;
     private TextButton.TextButtonStyle bStyle;
 
+    private Sound clickSound;
+
     public MenuScreen() {
 
         startButtonWidth = 200;
@@ -88,6 +93,23 @@ public class MenuScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 DNASIC.INSTANCE.setScreen(new SettingsScreen());
+            }
+        });
+
+        // add button clicks
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Click.wav"));
+        startB.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                clickSound.play();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+        settingsB.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                clickSound.play();
+                return super.touchDown(event, x, y, pointer, button);
             }
         });
 
