@@ -116,6 +116,7 @@ Thumbs.db
 
 # all lock files
 *.lock
+.~lock.*
 
 # Savegame files
 /assets/GameData/*
