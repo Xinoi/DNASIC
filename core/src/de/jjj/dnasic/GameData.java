@@ -1,7 +1,5 @@
 package de.jjj.dnasic;
 
-import com.badlogic.gdx.maps.Map;
-
 import java.util.HashMap;
 
 public class GameData {

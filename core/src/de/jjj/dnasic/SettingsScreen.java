@@ -20,18 +20,18 @@ public class SettingsScreen extends ScreenAdapter{
 	
 	private Stage stage;
 	private Table table;
-	
-	Label musicL;
-	Label title;
-	TextButton musicB;
-	TextButton.TextButtonStyle bStyle;
 
-	TextureAtlas atlas;
-	Skin skin;
+	private Label musicL;
+	private Label title;
+	private TextButton musicB;
+	private TextButton.TextButtonStyle bStyle;
 
-	Music bgMusic;
-	
-    BitmapFont font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
+	private TextureAtlas atlas;
+	private Skin skin;
+
+	private Music bgMusic;
+
+	private BitmapFont font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
 
 	private Sound clickSound;
 	

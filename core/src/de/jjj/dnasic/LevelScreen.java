@@ -35,7 +35,7 @@ public class  LevelScreen extends ScreenAdapter {
 
     private Music bgMusic;
 
-    BitmapFont font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
+    private BitmapFont font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
 
     private SpriteBatch batch;
 
