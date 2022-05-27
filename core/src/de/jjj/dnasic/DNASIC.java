@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -28,6 +28,8 @@ public class DNASIC extends Game {
 
     private Sound clickSound;
 
+    private BitmapFont font;
+
 	public static DNASIC INSTANCE = new DNASIC();
 
 	public DNASIC() {
@@ -40,6 +42,8 @@ public class DNASIC extends Game {
 	public void create() {
         this.settings = this.loadSettings();
         this.data = this.loadGameData();
+
+        font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
 
         createButtonStyles();
         BackB = new TextButton("  Back  ", bStyle);
@@ -76,12 +80,24 @@ public class DNASIC extends Game {
         super.pause();
     }
 
+    public BitmapFont getFont() {
+        return font;
+    }
+
+    public TextButton.TextButtonStyle getButtonStyle() {
+        return bStyle;
+    }
+
+    public Label.LabelStyle getLabelStyle() {
+        return new Label.LabelStyle(font, Color.WHITE);
+    }
+
     private void createButtonStyles() {
         atlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
         skin = new Skin();
         skin.addRegions(atlas);
         bStyle = new TextButton.TextButtonStyle();
-        bStyle.font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));;
+        bStyle.font = font;
         bStyle.fontColor = Color.GRAY;
         bStyle.up = skin.getDrawable("button_up");
         bStyle.down = skin.getDrawable("button_down");

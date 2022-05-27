@@ -5,18 +5,12 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -35,22 +29,12 @@ public class MenuScreen extends ScreenAdapter {
 
     private SpriteBatch batch;
     private Music bgMusic;
-
-    private BitmapFont titleFont;
-
     private Label titleLabel;
-    private Label.LabelStyle titleStyle;
     private Color white;
 
     private Stage stage;
-
-    private TextureAtlas atlas;
-    private Skin skin;
-
     private TextButton startB;
     private TextButton settingsB;
-    private TextButton exitB;
-    private TextButton.TextButtonStyle bStyle;
 
     private Sound clickSound;
 
@@ -68,18 +52,12 @@ public class MenuScreen extends ScreenAdapter {
 
         batch = new SpriteBatch();
 
-        titleFont = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
-
         // set a stage
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
         // create title
         createTitle();
-
-        // create button Styles
-        createButtonStyles();
-
         // create Buttons
         createStartButton();
         startB.addListener(new ChangeListener() {
@@ -148,9 +126,6 @@ public class MenuScreen extends ScreenAdapter {
     public void dispose() {
         stage.dispose();
         batch.dispose();
-        titleFont.dispose();
-        atlas.dispose();
-        skin.dispose();
         bgMusic.dispose();
     }
 
@@ -164,32 +139,18 @@ public class MenuScreen extends ScreenAdapter {
     private void createTitle(){
         white = new Color();
         white.set(Color.WHITE);
-        titleStyle = new Label.LabelStyle(titleFont, white);
-        titleLabel = new Label("D N A S I C", titleStyle);
+        titleLabel = new Label("D N A S I C", DNASIC.INSTANCE.getLabelStyle());
         titleLabel.setPosition(Gdx.graphics.getWidth() / 2 - titleLabel.getWidth() / 2, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4);
     }
 
     private void createStartButton() {
-        startB = new TextButton("play", bStyle);
+        startB = new TextButton("play", DNASIC.INSTANCE.getButtonStyle());
         startB.setBounds(startButtonx, startButtony, startButtonWidth, startButtonHeigth);
     }
 
     private void createSettingsButton() {
-        settingsB = new TextButton("settings", bStyle);
+        settingsB = new TextButton("settings", DNASIC.INSTANCE.getButtonStyle());
         settingsB.setBounds(settingsButtonx, settingsButtony, settingsButtonWidth, settingsButtonHeigth);
-    }
-
-    private void createButtonStyles() {
-        atlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
-        skin = new Skin();
-        skin.addRegions(atlas);
-        bStyle = new TextButton.TextButtonStyle();
-        bStyle.font = titleFont;
-        bStyle.fontColor = Color.GRAY;
-        bStyle.up = skin.getDrawable("button_up");
-        bStyle.down = skin.getDrawable("button_down");
-        bStyle.pressedOffsetX = 1;
-        bStyle.pressedOffsetY = -1;
     }
 
 }
