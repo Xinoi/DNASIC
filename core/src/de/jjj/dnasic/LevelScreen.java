@@ -5,21 +5,14 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class  LevelScreen extends ScreenAdapter {
@@ -34,8 +27,6 @@ public class  LevelScreen extends ScreenAdapter {
     private Label selectText;
 
     private Music bgMusic;
-
-    private BitmapFont font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
 
     private SpriteBatch batch;
 
@@ -72,7 +63,7 @@ public class  LevelScreen extends ScreenAdapter {
         });
 
 
-        selectText = new Label("select level by clicking on it", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt")), Color.WHITE));
+        selectText = new Label("select level by clicking on it", DNASIC.INSTANCE.getLabelStyle());
 
         table.add(selectText).padBottom(50).padLeft(50).colspan(2);
         table.row();

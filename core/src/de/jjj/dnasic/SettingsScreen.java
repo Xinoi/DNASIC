@@ -5,8 +5,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -24,15 +22,8 @@ public class SettingsScreen extends ScreenAdapter{
 	private Label musicL;
 	private Label title;
 	private TextButton musicB;
-	private TextButton.TextButtonStyle bStyle;
-
-	private TextureAtlas atlas;
-	private Skin skin;
 
 	private Music bgMusic;
-
-	private BitmapFont font = new BitmapFont(Gdx.files.internal("BitmapFonts/MainFont.fnt"));
-
 	private Sound clickSound;
 	
 	public SettingsScreen() {
@@ -40,12 +31,11 @@ public class SettingsScreen extends ScreenAdapter{
 		stage = new Stage(new ScreenViewport());
 		Gdx.input.setInputProcessor(stage);
 
-		title = new Label("Settings", new Label.LabelStyle(font, Color.WHITE));
+		title = new Label("Settings", DNASIC.INSTANCE.getLabelStyle());
 
-		musicL = new Label("Music:", new Label.LabelStyle(font, Color.WHITE));
+		musicL = new Label("Music:", DNASIC.INSTANCE.getLabelStyle());
 
-		createButtonStyles();
-		musicB = new TextButton(getMbuttonText(), bStyle);
+		musicB = new TextButton(getMbuttonText(), DNASIC.INSTANCE.getButtonStyle());
 		musicB.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
@@ -100,19 +90,6 @@ public class SettingsScreen extends ScreenAdapter{
 	public void dispose() {
 		stage.dispose();
 		bgMusic.dispose();
-	}
-
-	private void createButtonStyles() {
-		atlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
-		skin = new Skin();
-		skin.addRegions(atlas);
-		bStyle = new TextButton.TextButtonStyle();
-		bStyle.font = font;
-		bStyle.fontColor = Color.GRAY;
-		bStyle.up = skin.getDrawable("button_up");
-		bStyle.down = skin.getDrawable("button_down");
-		bStyle.pressedOffsetX = 1;
-		bStyle.pressedOffsetY = -1;
 	}
 
 	private String getMbuttonText() {
