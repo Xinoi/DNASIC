@@ -1,4 +1,4 @@
-package de.jjj.dnasic;
+package de.jjj.dnasic.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
+import de.jjj.dnasic.DNASIC;
 
 public class MenuScreen extends ScreenAdapter {
 
