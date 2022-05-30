@@ -1,5 +1,6 @@
 package de.jjj.dnasic;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 // prepared import
@@ -14,8 +15,10 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setWindowedMode(1200, 800);
 		config.useVsync(true);
+		config.setWindowIcon(Files.FileType.Internal, new String[]{"Images/Icons/Icon32.png", "Images/Icons/Icon128.png"});
 		config.setResizable(false);
 		config.setMaximized(false);
+
 		new Lwjgl3Application(new DNASIC(), config);
 	}
 }
