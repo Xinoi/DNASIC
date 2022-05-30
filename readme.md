@@ -1,5 +1,5 @@
 # DNASIC
-## Installation and running
+## Installieren und Ausführen
 ---
 ## Überblick
 ![Pflichtenheft Seite 1](https://github.com/Xinoi/DNASIC/blob/main/Pflichtenheft%201.jpg?raw=true)
