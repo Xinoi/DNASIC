@@ -149,8 +149,8 @@ public class MenuScreen extends ScreenAdapter {
         titleLabel.setPosition(Gdx.graphics.getWidth() / 2 - titleLabel.getWidth() / 2, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4);
     }
     private void createButtons() {
-        startB = new TextButton("play", DNASIC.INSTANCE.getButtonStyle());
-        settingsB = new TextButton("settings", DNASIC.INSTANCE.getButtonStyle());
+        startB = new TextButton("Play", DNASIC.INSTANCE.getButtonStyle());
+        settingsB = new TextButton("Settings", DNASIC.INSTANCE.getButtonStyle());
         exitButton = new TextButton("Exit", DNASIC.INSTANCE.getButtonStyle());
     }
 
