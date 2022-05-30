@@ -16,6 +16,9 @@ public class DesktopLauncher {
 		config.setWindowedMode(1200, 800);
 		config.useVsync(true);
 		config.setWindowIcon(Files.FileType.Internal, new String[]{"Images/Icons/Icon32.png", "Images/Icons/Icon128.png"});
+		config.setResizable(false);
+		config.setMaximized(false);
+
 		new Lwjgl3Application(new DNASIC(), config);
 	}
 }
