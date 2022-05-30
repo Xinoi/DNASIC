@@ -14,6 +14,8 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setWindowedMode(1200, 800);
 		config.useVsync(true);
+		config.setResizable(false);
+		config.setMaximized(false);
 		new Lwjgl3Application(new DNASIC(), config);
 	}
 }
