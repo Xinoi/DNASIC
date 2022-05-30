@@ -21,16 +21,10 @@ public class MenuScreen extends ScreenAdapter {
 
     private float buttonHeigth;
     private float startButtonWidth;
-    private float startButtonx;
-    private float startButtony;
 
     private float settingsButtonWidth;
-    private float settingsButtonx;
-    private float settingsButtony;
 
     private float exitButtonWidth;
-    private float exitButtonx;
-    private float exitButtony;
 
     private Table table;
 
@@ -51,16 +45,8 @@ public class MenuScreen extends ScreenAdapter {
         buttonHeigth = 80;
 
         startButtonWidth = 200;
-        startButtonx = Gdx.graphics.getWidth() / 2 - startButtonWidth/2;
-        startButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 2;
-
         settingsButtonWidth = 250;
-        settingsButtonx = Gdx.graphics.getWidth() / 2 - settingsButtonWidth/2;
-        settingsButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4 * 3;
-
         exitButtonWidth = 200;
-        exitButtonx = Gdx.graphics.getWidth() / 2 - settingsButtonWidth/2;
-        exitButtony = Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 4;
 
         batch = new SpriteBatch();
 
@@ -154,13 +140,6 @@ public class MenuScreen extends ScreenAdapter {
         stage.dispose();
         batch.dispose();
         bgMusic.dispose();
-    }
-
-    private void addActors() {
-        Actor[] actors = {startB, settingsB, exitButton, titleLabel};
-        for(int i = 0; i < 3; i++) {
-            stage.addActor(actors[i]);
-        }
     }
 
     private void createTitle(){
