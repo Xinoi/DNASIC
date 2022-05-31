@@ -5,8 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -30,6 +32,8 @@ public class DNASIC extends Game {
     private Sound clickSound;
 
     private BitmapFont font;
+
+    private Animation<TextureRegion> menuBackground;
 
 	public static DNASIC INSTANCE = new DNASIC();
 
@@ -64,6 +68,10 @@ public class DNASIC extends Game {
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
+
+        // Create background for menus
+        TextureAtlas menuBackgrouondAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/erde/erde.atlas"));
+        this.menuBackground = new Animation<TextureRegion>(1/5f, menuBackgrouondAtlas.getRegions());
 
 		this.setScreen(new MenuScreen());
 	}
@@ -145,5 +153,10 @@ public class DNASIC extends Game {
     // Get current settings
     public Settings getSettings(){
         return this.settings;
+    }
+
+    // Get background animation for menus
+    public Animation getMenuBackground(){
+        return this.menuBackground;
     }
 }

@@ -120,9 +120,8 @@ public class MenuScreen extends ScreenAdapter {
         // add things to stage
         stage.addActor(table);
 
-        // create background
-        TextureAtlas bgTextureAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/erde/erde.atlas"));
-        bgAnimation = new Animation<TextureRegion>(1/5f, bgTextureAtlas.getRegions());
+        // Get animation for background
+        bgAnimation = DNASIC.INSTANCE.getMenuBackground();
     }
 
     @Override
