@@ -5,7 +5,11 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -39,6 +43,9 @@ public class MenuScreen extends ScreenAdapter {
     private TextButton exitButton;
 
     private Sound clickSound;
+
+    private Animation<TextureRegion> bgAnimation;
+    private float elapsedTime;
 
     public MenuScreen() {
 
@@ -109,8 +116,12 @@ public class MenuScreen extends ScreenAdapter {
         table.add(settingsB).space(50).size(settingsButtonWidth, buttonHeigth);
         table.row();
         table.add(exitButton).space(50).size(exitButtonWidth, buttonHeigth);
+
         // add things to stage
         stage.addActor(table);
+
+        // Get animation for background
+        bgAnimation = DNASIC.INSTANCE.getMenuBackground();
     }
 
     @Override
@@ -129,6 +140,11 @@ public class MenuScreen extends ScreenAdapter {
         }
 
         batch.begin();
+
+        // render background first
+        elapsedTime += Gdx.graphics.getDeltaTime();
+        batch.draw(bgAnimation.getKeyFrame(elapsedTime, true), 0, 0);
+
         batch.end();
 
         stage.act(delta);
