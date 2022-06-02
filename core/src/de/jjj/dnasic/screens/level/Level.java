@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.ships.PlayerShip;
 
 public class Level extends ScreenAdapter implements InputProcessor {
@@ -16,12 +18,17 @@ public class Level extends ScreenAdapter implements InputProcessor {
     private Sprite background;
     private PlayerShip playerShip;
     TextureAtlas playerAtlas;
+    private Music bgMusic;
 
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
         playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_2").getRegionHeight());
         playerShip.scale(2); playerShip.rotate(-90);
+
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
+        bgMusic.setLooping(true);
+        bgMusic.setVolume(0.3f);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -31,6 +38,12 @@ public class Level extends ScreenAdapter implements InputProcessor {
         background.draw(batch);
         playerShip.draw(batch);
         batch.end();
+
+        if(DNASIC.INSTANCE.getSettings().getMusic()){
+            bgMusic.play();
+        }else {
+            bgMusic.stop();
+        }
 
 
     }
