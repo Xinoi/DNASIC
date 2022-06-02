@@ -36,14 +36,10 @@ public class Ship extends Sprite {
         this.speed += amount;
     }
 
-    public void setCoordinates(float x, float y){
-        this.x = x;
-        this.y = y;
+    public void move(float x, float y, float delta){
+        this.x = this.x + (x * this.speed * delta);
+        this.y = this.y + (y * this.speed * delta);
 
-        super.setPosition(x, y);
-    }
-
-    public void move(float x, float y){
-        this.setCoordinates(this.x + (x * this.speed), this.y + (y * this.speed));
+        this.setPosition(this.x, this.y);
     }
 }

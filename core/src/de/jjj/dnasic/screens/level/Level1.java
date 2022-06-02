@@ -23,7 +23,8 @@ public class Level1 extends Level{
     @Override
     public void render(float delta) {
         ScreenUtils.clear(new Color(Color.BLACK));
-        super.renderAssets(batch);
+        super.render(batch);
+        super.update(delta);
     }
 
     @Override

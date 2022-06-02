@@ -22,37 +22,61 @@ public class Level extends ScreenAdapter implements InputProcessor {
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
         playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_1").getRegionHeight());
         playerShip.scale(2); playerShip.rotate(-90);
+
+        Gdx.input.setInputProcessor(this);
     }
 
-    public void renderAssets(SpriteBatch batch) {
+    public void render(SpriteBatch batch) {
         batch.begin();
         background.draw(batch);
         playerShip.draw(batch);
         batch.end();
+
+
+    }
+
+    public void update(float delta) {
+        playerShip.move(speedx, speedy, delta);
     }
 
     @Override
-    public void hide(){}
+    public void hide(){
+
+    }
 
     @Override
     public void render(float delta) {
-        playerShip.move(speedx, speedy);
+
     }
 
 
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.W) {
-            speedy = 1;
+            speedy = 500;
+        }if(keycode == Input.Keys.S) {
+            speedy = -500;
+        }if(keycode == Input.Keys.D) {
+            speedx = 500;
+        }if(keycode == Input.Keys.A) {
+            speedx = -500;
         }
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        if(keycode == Input.Keys.W) {
+            speedy = 0;
+        }if(keycode == Input.Keys.S) {
+            speedy = 0;
+        }if(keycode == Input.Keys.D) {
+            speedx = 0;
+        }if(keycode == Input.Keys.A) {
+            speedx = 0;
+        }
         return false;
     }
-
     @Override
     public boolean keyTyped(char character) {
         return false;
