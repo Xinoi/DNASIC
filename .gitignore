@@ -125,5 +125,6 @@ Thumbs.db
 /assets/settings.json
 settings.json
 
-# Second assets folder
+# Second and third assets folder
 /assets/assets/*
+/desktop/assets/*
