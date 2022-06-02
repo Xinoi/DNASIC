@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class PlayerShip extends Ship {
 
-    public PlayerShip(TextureRegion skin, float x, float y) {
-        super(skin, x, y, 1f);
+    public PlayerShip(TextureRegion texture, float x, float y) {
+        super(texture, x, y, 1f);
     }
 
 
