@@ -23,7 +23,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
-        playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_2").getRegionHeight());
+        playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_2").getRegionHeight(), 500f);
         playerShip.scale(2); playerShip.rotate(-90);
 
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
@@ -50,6 +50,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     public void update(float delta) {
         playerShip.move(speedx, speedy, delta);
+        playerShip.detectEdge(delta);
     }
 
     @Override
@@ -66,13 +67,13 @@ public class Level extends ScreenAdapter implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.W) {
-            speedy = 500;
+            speedy = 1;
         }if(keycode == Input.Keys.S) {
-            speedy = -500;
+            speedy = -1;
         }if(keycode == Input.Keys.D) {
-            speedx = 500;
+            speedx = 1;
         }if(keycode == Input.Keys.A) {
-            speedx = -500;
+            speedx = -1;
         }
         return false;
     }
