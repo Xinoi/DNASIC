@@ -68,9 +68,9 @@ public class  LevelScreen extends ScreenAdapter {
 
         table.add(selectText).padBottom(50).padLeft(50).colspan(2);
         table.row();
-        table.add(lvl1).space(0);
-        table.add(lvl2);
-        table.add(lvl3);
+        table.add(lvl1).space(50);
+        table.add(lvl2).space(50);
+        table.add(lvl3).space(50);
 
         // background Music
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
