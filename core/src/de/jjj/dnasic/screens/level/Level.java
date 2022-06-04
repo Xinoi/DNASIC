@@ -11,20 +11,24 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.ships.PlayerShip;
 
+import java.util.HashMap;
+
 public class Level extends ScreenAdapter implements InputProcessor {
 
-    float speedx = 0;
-    float speedy = 0;
     private Sprite background;
     private PlayerShip playerShip;
     TextureAtlas playerAtlas;
     private Music bgMusic;
+
+    private HashMap<String, Boolean> keysPressed;
 
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
         playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_2").getRegionHeight(), 500f);
         playerShip.scale(2); playerShip.rotate(-90);
+
+        this.keysPressed = new HashMap<String, Boolean>();
 
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         bgMusic.setLooping(true);
@@ -49,7 +53,22 @@ public class Level extends ScreenAdapter implements InputProcessor {
     }
 
     public void update(float delta) {
-        playerShip.move(speedx, speedy, delta);
+        float moveX = 0;
+        float moveY = 0;
+        if(this.keysPressed.containsKey("W") && this.keysPressed.get("W")){
+            moveY += 1;
+        }
+        if(this.keysPressed.containsKey("S") && this.keysPressed.get("S")){
+            moveY -= 1;
+        }
+        if(this.keysPressed.containsKey("A") && this.keysPressed.get("A")){
+            moveX -= 1;
+        }
+        if(this.keysPressed.containsKey("D") && this.keysPressed.get("D")){
+            moveX += 1;
+        }
+
+        playerShip.move(moveX, moveY, delta);
         playerShip.detectEdge(delta);
     }
 
@@ -67,13 +86,13 @@ public class Level extends ScreenAdapter implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.W) {
-            speedy = 1;
+            this.keysPressed.put("W", true);
         }if(keycode == Input.Keys.S) {
-            speedy = -1;
+            this.keysPressed.put("S", true);
         }if(keycode == Input.Keys.D) {
-            speedx = 1;
+            this.keysPressed.put("D", true);
         }if(keycode == Input.Keys.A) {
-            speedx = -1;
+            this.keysPressed.put("A", true);
         }
         return false;
     }
@@ -81,13 +100,13 @@ public class Level extends ScreenAdapter implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         if(keycode == Input.Keys.W) {
-            speedy = 0;
+            this.keysPressed.put("W", false);
         }if(keycode == Input.Keys.S) {
-            speedy = 0;
+            this.keysPressed.put("S", false);
         }if(keycode == Input.Keys.D) {
-            speedx = 0;
+            this.keysPressed.put("D", false);
         }if(keycode == Input.Keys.A) {
-            speedx = 0;
+            this.keysPressed.put("A", false);
         }
         return false;
     }
