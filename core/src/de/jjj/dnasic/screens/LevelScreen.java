@@ -66,7 +66,7 @@ public class  LevelScreen extends ScreenAdapter {
 
         selectText = new Label("select level by clicking on it", DNASIC.INSTANCE.getLabelStyle());
 
-        table.add(selectText).padBottom(50).padLeft(50).colspan(2);
+        table.add(selectText).padBottom(50).padLeft(50).colspan(3);
         table.row();
         table.add(lvl1).space(50);
         table.add(lvl2).space(50);
