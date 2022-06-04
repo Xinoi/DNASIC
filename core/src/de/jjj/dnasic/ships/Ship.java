@@ -21,6 +21,14 @@ public class Ship extends Sprite {
         super.setPosition(x, y);
     }
 
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+
+        this.x = x;
+        this.y = y;
+    }
+
     public float getX(){
         return this.x;
     }
@@ -44,18 +52,18 @@ public class Ship extends Sprite {
         this.setPosition(this.x, this.y);
     }
 
-    public void detectEdge(float delta) {
-        if (this.getX() <= 0) {
-            move(1, 0, delta);
+    public void keepInBounds() {
+        if (this.getX() < 0) {
+            this.setPosition(0, this.y);
         }
-        if(this.getX() >= Gdx.graphics.getWidth()) {
-            move(-1, 0, delta);
+        if(this.getX() > Gdx.graphics.getWidth()) {
+            this.setPosition(Gdx.graphics.getWidth(), this.y);
         }
-        if(this.getY() <= 0) {
-            move(0, 1, delta);
+        if(this.getY() < 0) {
+            this.setPosition(this.x, 0);
         }
-        if(this.getY() >= Gdx.graphics.getHeight() - this.getHeight()) {
-            move(0, -1, delta);
+        if(this.getY() > Gdx.graphics.getHeight() - this.getHeight()) {
+            this.setPosition(this.x, Gdx.graphics.getHeight() - this.getHeight());
         }
     }
 }

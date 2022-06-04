@@ -69,7 +69,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         }
 
         playerShip.move(moveX, moveY, delta);
-        playerShip.detectEdge(delta);
+        playerShip.keepInBounds();
     }
 
     @Override
