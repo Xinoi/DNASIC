@@ -26,7 +26,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
         playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_2").getRegionHeight(), 500f);
-        playerShip.scale(2); playerShip.rotate(-90);
+        playerShip.rotate(-90);
 
         this.keysPressed = new HashMap<String, Boolean>();
 
