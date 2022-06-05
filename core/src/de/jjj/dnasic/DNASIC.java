@@ -6,8 +6,10 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -32,7 +34,11 @@ public class DNASIC extends Game {
 
     private BitmapFont font;
 
+
     private Music menuMusic;
+
+    private Animation<TextureRegion> menuBackground;
+
 
 	public static DNASIC INSTANCE = new DNASIC();
 
@@ -68,10 +74,15 @@ public class DNASIC extends Game {
             }
         });
 
+
         // Initialize music for menus
         this.menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         this.menuMusic.setLooping(true);
         this.menuMusic.setVolume(0.3f);
+
+        // Create background for menus
+        TextureAtlas menuBackgrouondAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/erde/erde.atlas"));
+        this.menuBackground = new Animation<TextureRegion>(1/5f, menuBackgrouondAtlas.getRegions());
 
 		this.setScreen(new MenuScreen());
 	}
@@ -163,5 +174,9 @@ public class DNASIC extends Game {
     // Set menu music
     public void setMenuMusic(Music music){
         this.menuMusic = music;
+
+    // Get background animation for menus
+    public Animation getMenuBackground(){
+        return this.menuBackground;
     }
 }

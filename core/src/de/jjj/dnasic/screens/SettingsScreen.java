@@ -5,6 +5,9 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -26,9 +29,12 @@ public class SettingsScreen extends ScreenAdapter{
 
 	private Music bgMusic;
 	private Sound clickSound;
+
+	private Animation<TextureRegion> bgAnimation;
+	private float elapsedTime;
+	private SpriteBatch batch;
 	
 	public SettingsScreen() {
-		
 		stage = new Stage(new ScreenViewport());
 		Gdx.input.setInputProcessor(stage);
 
@@ -62,6 +68,11 @@ public class SettingsScreen extends ScreenAdapter{
 
 		// background Music
 		bgMusic = DNASIC.INSTANCE.getMenuMusic();
+
+		batch = new SpriteBatch();
+
+		// Get background animation
+		bgAnimation = DNASIC.INSTANCE.getMenuBackground();
 		
 		stage.addActor(table);
 		stage.addActor(DNASIC.INSTANCE.BackB);
@@ -76,6 +87,14 @@ public class SettingsScreen extends ScreenAdapter{
 		}else {
 			bgMusic.stop();
 		}
+
+		batch.begin();
+
+		// render background first
+		elapsedTime += Gdx.graphics.getDeltaTime();
+		batch.draw(bgAnimation.getKeyFrame(elapsedTime, true), 0, 0);
+
+		batch.end();
 
 		stage.act(delta);
 		stage.draw();
