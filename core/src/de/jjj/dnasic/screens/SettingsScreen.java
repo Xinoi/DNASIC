@@ -61,9 +61,7 @@ public class SettingsScreen extends ScreenAdapter{
 		table.add(musicB).pad(10);
 
 		// background Music
-		bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
-		bgMusic.setLooping(true);
-		bgMusic.setVolume(0.3f);
+		bgMusic = DNASIC.INSTANCE.getMenuMusic();
 		
 		stage.addActor(table);
 		stage.addActor(DNASIC.INSTANCE.BackB);
@@ -85,7 +83,8 @@ public class SettingsScreen extends ScreenAdapter{
 
 	@Override
 	public void hide() {
-		bgMusic.stop();
+		bgMusic.pause();
+		DNASIC.INSTANCE.setMenuMusic(bgMusic);
 	}
 	@Override
 	public void dispose() {

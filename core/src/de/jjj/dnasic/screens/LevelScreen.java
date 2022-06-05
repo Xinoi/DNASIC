@@ -45,6 +45,9 @@ public class  LevelScreen extends ScreenAdapter {
         lvl1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                // Stop music before leaving the menu
+                bgMusic.stop();
+
                 System.out.println("lvl1 was clicked!");
             }
         });
@@ -52,14 +55,20 @@ public class  LevelScreen extends ScreenAdapter {
         lvl2.addListener(new ClickListener() {
         	@Override
         	public void clicked(InputEvent event, float x, float y) {
-        		System.out.println("lvl2 was clicked");
+                // Stop music before leaving the menu
+                bgMusic.stop();
+
+                System.out.println("lvl2 was clicked");
         	}
         });
         lvl3 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl3.png")));
         lvl3.addListener(new ClickListener() {
         	@Override
         	public void clicked(InputEvent event, float x, float y) {
-        		System.out.println("lvl3 was clicked");
+                // Stop music before leaving the menu
+                bgMusic.stop();
+
+                System.out.println("lvl3 was clicked");
         	}
         });
 
@@ -73,9 +82,7 @@ public class  LevelScreen extends ScreenAdapter {
         table.add(lvl3);
 
         // background Music
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
-        bgMusic.setLooping(true);
-        bgMusic.setVolume(0.3f);
+        bgMusic = DNASIC.INSTANCE.getMenuMusic();
 
 
 
@@ -85,7 +92,8 @@ public class  LevelScreen extends ScreenAdapter {
 
     @Override
     public void hide() {
-        bgMusic.stop();
+        bgMusic.pause();
+        DNASIC.INSTANCE.setMenuMusic(bgMusic);
     }
 
     @Override
