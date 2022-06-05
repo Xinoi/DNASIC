@@ -172,8 +172,9 @@ public class DNASIC extends Game {
     }
 
     // Set menu music
-    public void setMenuMusic(Music music){
+    public void setMenuMusic(Music music) {
         this.menuMusic = music;
+    }
 
     // Get background animation for menus
     public Animation getMenuBackground(){
