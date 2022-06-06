@@ -2,6 +2,7 @@ package de.jjj.dnasic;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -33,7 +34,11 @@ public class DNASIC extends Game {
 
     private BitmapFont font;
 
+
+    private Music menuMusic;
+
     private Animation<TextureRegion> menuBackground;
+
 
 	public static DNASIC INSTANCE = new DNASIC();
 
@@ -68,6 +73,12 @@ public class DNASIC extends Game {
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
+
+
+        // Initialize music for menus
+        this.menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
+        this.menuMusic.setLooping(true);
+        this.menuMusic.setVolume(0.3f);
 
         // Create background for menus
         TextureAtlas menuBackgrouondAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/erde/erde.atlas"));
@@ -153,6 +164,16 @@ public class DNASIC extends Game {
     // Get current settings
     public Settings getSettings(){
         return this.settings;
+    }
+
+    // Get menu music
+    public Music getMenuMusic(){
+        return this.menuMusic;
+    }
+
+    // Set menu music
+    public void setMenuMusic(Music music) {
+        this.menuMusic = music;
     }
 
     // Get background animation for menus
