@@ -1,14 +1,15 @@
 package de.jjj.dnasic.ships;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import de.jjj.dnasic.weapons.Weapon;
 
 public class EnemyShip extends Ship {
     private int health;
 
     private float turnSpeed;
 
-    public EnemyShip(TextureRegion texture, float x, float y, float speed, float turnSpeed, int health){
-        super(texture, x, y, speed);
+    public EnemyShip(TextureRegion texture, float x, float y, float speed, float turnSpeed, int health, Weapon[] weapons){
+        super(texture, x, y, speed, weapons);
 
         this.turnSpeed = turnSpeed;
 
