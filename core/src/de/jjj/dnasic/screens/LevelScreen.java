@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import de.jjj.dnasic.DNASIC;
+import de.jjj.dnasic.screens.level.Level1;
 
 public class  LevelScreen extends ScreenAdapter {
 
@@ -45,10 +46,7 @@ public class  LevelScreen extends ScreenAdapter {
         lvl1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Stop music before leaving the menu
-                bgMusic.stop();
-
-                System.out.println("lvl1 was clicked!");
+                DNASIC.INSTANCE.setScreen(new Level1());
             }
         });
         lvl2 = new Image(new Texture(Gdx.files.internal("Images/LevelCover/lvl2.png")));
