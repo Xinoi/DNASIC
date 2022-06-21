@@ -9,7 +9,7 @@ public class PlayerShip extends Ship {
 
     public PlayerShip(TextureRegion texture, float x, float y) {
         super(texture, x, y, 1f, new Weapon[3]);
+
+        super.scale(2);
     }
-
-
 }

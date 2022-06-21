@@ -1,5 +1,6 @@
 package de.jjj.dnasic.ships;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import de.jjj.dnasic.weapons.Weapon;
@@ -25,6 +26,14 @@ public class Ship extends Sprite {
         super.setPosition(x, y);
     }
 
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+
+        this.x = x;
+        this.y = y;
+    }
+
     public float getX(){
         return this.x;
     }
@@ -41,15 +50,26 @@ public class Ship extends Sprite {
         this.speed += amount;
     }
 
-    public void setCoordinates(float x, float y){
-        this.x = x;
-        this.y = y;
+    public void move(float x, float y, float delta){
+        this.x = this.x + (x * this.speed * delta);
+        this.y = this.y + (y * this.speed * delta);
 
-        super.setPosition(x, y);
+        this.setPosition(this.x, this.y);
     }
 
-    public void move(float x, float y){
-        this.setCoordinates(this.x + (x * this.speed), this.y + (y * this.speed));
+    public void keepInBounds() {
+        if (this.getX() < 0) {
+            this.setPosition(0, this.y);
+        }
+        if(this.getX() > Gdx.graphics.getWidth()) {
+            this.setPosition(Gdx.graphics.getWidth(), this.y);
+        }
+        if(this.getY() < 0) {
+            this.setPosition(this.x, 0);
+        }
+        if(this.getY() > Gdx.graphics.getHeight() - this.getHeight()) {
+            this.setPosition(this.x, Gdx.graphics.getHeight() - this.getHeight());
+        }
     }
 
     public Weapon[] getWeapons(){
