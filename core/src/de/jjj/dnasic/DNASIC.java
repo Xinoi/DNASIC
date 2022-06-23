@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Json;
 import de.jjj.dnasic.screens.MenuScreen;
 
@@ -27,7 +28,6 @@ public class DNASIC extends Game {
 
     public TextButton BackB;
     private TextureAtlas atlas;
-    private Skin skin;
     private TextButton.TextButtonStyle bStyle;
 
     private Sound clickSound;
@@ -114,13 +114,11 @@ public class DNASIC extends Game {
 
     private void createButtonStyles() {
         atlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
-        skin = new Skin();
-        skin.addRegions(atlas);
         bStyle = new TextButton.TextButtonStyle();
         bStyle.font = font;
         bStyle.fontColor = Color.GRAY;
-        bStyle.up = skin.getDrawable("button_up");
-        bStyle.down = skin.getDrawable("button_down");
+        bStyle.up = new TextureRegionDrawable(atlas.findRegion("button_up"));
+        bStyle.down = new TextureRegionDrawable(atlas.findRegion("button_down"));
         bStyle.pressedOffsetX = 1;
         bStyle.pressedOffsetY = -1;
     }
