@@ -34,12 +34,15 @@ public class UpgradeScreen extends ScreenAdapter {
     private String currentShip;
     private Button triebwerkeB;
     private TextButton.TextButtonStyle bStyle;
+    //private int[][] Buttonmatrix;
 
 
 
     public UpgradeScreen(){
         currentShip = Level.returncurrentShip();
-        bStyle = new TextButton.TextButtonStyle();
+        createButtonStyles();
+        //Buttonmatrix = new int[][];
+        //Buttonmatrix[3][0] = 250;
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -64,12 +67,13 @@ public class UpgradeScreen extends ScreenAdapter {
 
         //Runde Buttons
         triebwerkeB = new TextButton("", bStyle);
-        triebwerkeB.setBounds(200,400,50,50);
+        triebwerkeB.setBounds(250,300,80,80);
 
-        stage.addActor(triebwerkeB);
+
         stage.addActor(backR);
         stage.addActor(Ship);
         stage.addActor(DNASIC.INSTANCE.BackB);
+        stage.addActor(triebwerkeB);
     }
 
     @Override
@@ -92,6 +96,7 @@ public class UpgradeScreen extends ScreenAdapter {
         stage.draw();
     }
     private void createButtonStyles() {
+        bStyle = new TextButton.TextButtonStyle();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
         bStyle = new TextButton.TextButtonStyle();
         bStyle.font = DNASIC.INSTANCE.getFont();
