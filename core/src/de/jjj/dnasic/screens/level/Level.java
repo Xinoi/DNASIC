@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Intersector;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.ships.Enemy1;
@@ -98,6 +99,13 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         for(Bullet s : playerShip.getBullets()){
             s.update(delta);
+        }
+
+        // check collisions
+        for(EnemyShip e : enemies){
+            if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle())){
+                playerShip.death();
+            }
         }
     }
 

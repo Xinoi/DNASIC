@@ -12,5 +12,7 @@ public class PlayerShip extends Ship {
         super.scale(2);
     }
 
-
+    public void death(){
+        System.out.println("Player died!");
+    }
 }
