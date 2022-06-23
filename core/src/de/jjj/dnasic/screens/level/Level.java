@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.ships.PlayerShip;
 
@@ -37,9 +38,14 @@ public class Level extends ScreenAdapter implements InputProcessor {
         Gdx.input.setInputProcessor(this);
     }
 
-    public void render(SpriteBatch batch) {
+    public void render(Sprite[] sprites, SpriteBatch batch) {
         batch.begin();
         background.draw(batch);
+
+        for(Sprite s : sprites){
+            s.draw(batch);
+        }
+
         playerShip.draw(batch);
         batch.end();
 
@@ -52,7 +58,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     }
 
-    public void update(float delta) {
+    public void update(Bullet[] sprites, float delta) {
         float moveX = 0;
         float moveY = 0;
         if(this.keysPressed.containsKey("W") && this.keysPressed.get("W")){
@@ -70,6 +76,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         playerShip.move(moveX, moveY, delta);
         playerShip.keepInBounds();
+
+        for(Bullet s : sprites){
+            s.update(delta);
+        }
     }
 
     @Override
