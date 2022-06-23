@@ -27,7 +27,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     TextureAtlas playerAtlas;
     private Music bgMusic;
     protected float ticker;
-    public static String currentShip = "Ship_3";
+    public static String currentShip = "Ship_4";
     public List<EnemyShip> enemies;
     private HashMap<String, Boolean> keysPressed;
     private boolean shootRegistered;

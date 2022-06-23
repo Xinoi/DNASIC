@@ -33,13 +33,20 @@ public class UpgradeScreen extends ScreenAdapter {
     private  TextureAtlas buttonAtlas;
     private String currentShip;
     private Button triebwerkeB;
+    private Button hpB;
+    private Button gunB;
     private TextButton.TextButtonStyle bStyle;
+    private int[][] MatrixShip1= {{200,320},{350,320},{780,320}};
+    private int[][] MatrixShip2 = {{400,300},{550,300},{780,300}};
+    private int[][] MatrixShip3 = {{250,300},{400,300},{730,300}};
+    private int[][] MatrixShip4= {{230,300},{400,300},{780,300}};
 
 
 
     public UpgradeScreen(){
         currentShip = Level.returncurrentShip();
         createButtonStyles();
+
 
 
         stage = new Stage(new ScreenViewport());
@@ -65,13 +72,19 @@ public class UpgradeScreen extends ScreenAdapter {
 
         //Runde Buttons
         triebwerkeB = new TextButton("", bStyle);
-        triebwerkeB.setBounds(250,300,80,80);
+        triebwerkeB.setBounds(230,300,80,80);
+        hpB = new TextButton("", bStyle);
+        hpB.setBounds(400,300,80,80);
+        gunB = new TextButton("", bStyle);
+        gunB.setBounds(780,300,80,80);
 
 
         stage.addActor(backR);
         stage.addActor(Ship);
         stage.addActor(DNASIC.INSTANCE.BackB);
         stage.addActor(triebwerkeB);
+        stage.addActor(hpB);
+        stage.addActor(gunB);
     }
 
     @Override
