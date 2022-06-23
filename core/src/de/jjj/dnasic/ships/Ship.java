@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ship extends Sprite {
-    private float x;
-    private float y;
+    protected float x;
+    protected float y;
 
     private float speed;
 
@@ -38,6 +38,10 @@ public class Ship extends Sprite {
 
         this.x = x;
         this.y = y;
+    }
+
+    public void updatePosition() {
+        this.setCenter(this.x, this.y);
     }
 
     public float getX(){

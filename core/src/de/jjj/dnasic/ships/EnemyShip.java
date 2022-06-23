@@ -36,8 +36,17 @@ public class EnemyShip extends Ship {
         }
     }
 
+    public void setSpawn() {
+        if(spawned == true) {
+            this.x = 10;
+            this.y = 10;
+        }
+    }
+
     @Override
     public void death(){
         System.out.println("Enemy was killed!");
     }
 }
+
+

@@ -92,6 +92,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
         playerShip.move(moveX, moveY, delta);
         playerShip.keepInBounds();
 
+        for(EnemyShip e : enemies) {
+            e.updatePosition();
+        }
+
         if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered){
             playerShip.shoot();
             this.shootRegistered = true;
@@ -120,6 +124,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
     	case 1:
     		enemies.add(new Enemy1(x, y, batch));
     	}
+
+
     }
 
     @Override
