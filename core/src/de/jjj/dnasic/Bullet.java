@@ -11,16 +11,16 @@ public class Bullet extends Sprite {
     private float x;
     private float y;
 
-    public Bullet(){
+    public Bullet(float x, float y, float speed_x){
         super(new Texture(Gdx.files.internal("Images/Icons/Icon32.png")));
 
-        speed_x = 100;
-        speed_y = 100;
+        this.speed_x = speed_x;
+        this.speed_y = 0;
 
-        x = 100;
-        y = 100;
+        this.x = x;
+        this.y = y;
 
-        super.setPosition(x, y);
+        super.setPosition(this.x, this.y);
     }
 
     public void move(float dx, float dy){

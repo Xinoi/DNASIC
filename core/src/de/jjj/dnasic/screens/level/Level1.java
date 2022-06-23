@@ -11,19 +11,17 @@ import de.jjj.dnasic.Bullet;
 public class Level1 extends Level{
 
     private SpriteBatch batch;
-    Bullet b;
 
     public Level1() {
         super(new Sprite(new Texture(Gdx.files.internal("Images/Background/Background_1.jpg"))));
         batch = new SpriteBatch();
-        b=new Bullet();
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(new Color(Color.BLACK));
-        super.render(new Sprite[]{b}, batch);
-        super.update(new Bullet[]{b}, delta);
+        super.render(batch);
+        super.update(delta);
     }
 
     @Override
