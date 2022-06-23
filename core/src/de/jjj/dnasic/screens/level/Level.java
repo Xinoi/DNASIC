@@ -19,6 +19,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     private PlayerShip playerShip;
     TextureAtlas playerAtlas;
     private Music bgMusic;
+    protected float ticker;
 
     private HashMap<String, Boolean> keysPressed;
 
@@ -33,6 +34,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
+        
+        ticker = 0;
 
         Gdx.input.setInputProcessor(this);
     }
@@ -67,19 +70,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
         if(this.keysPressed.containsKey("D") && this.keysPressed.get("D")){
             moveX += 1;
         }
+        
+        ticker = ticker + 1 * delta;
 
         playerShip.move(moveX, moveY, delta);
         playerShip.keepInBounds();
-    }
-
-    @Override
-    public void hide(){
-
-    }
-
-    @Override
-    public void render(float delta) {
-
     }
 
 

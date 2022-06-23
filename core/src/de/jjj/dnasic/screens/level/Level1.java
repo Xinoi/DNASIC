@@ -21,6 +21,7 @@ public class Level1 extends Level{
         ScreenUtils.clear(new Color(Color.BLACK));
         super.render(batch);
         super.update(delta);
+        System.out.println(ticker);
     }
 
     @Override
@@ -30,7 +31,8 @@ public class Level1 extends Level{
 
     @Override
     public void dispose() {
-
+    	batch.dispose();
+    	this.dispose();
     }
 
 }
