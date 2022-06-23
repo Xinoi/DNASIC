@@ -54,17 +54,12 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public void render(SpriteBatch batch) {
         batch.begin();
         background.draw(batch);
-<<<<<<< HEAD
         for(EnemyShip e : enemies) {
         	e.draw(batch);
         }
-=======
-
         for(Bullet b : playerShip.getBullets()){
             b.draw(batch);
         }
-
->>>>>>> 6a7bd2d85db5a592966a740ae38bd6d892b9d8ed
         playerShip.draw(batch);
         batch.end();
 
