@@ -3,7 +3,11 @@ package de.jjj.dnasic.ships;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.weapons.Weapon;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ship extends Sprite {
     private float x;
@@ -12,6 +16,7 @@ public class Ship extends Sprite {
     private float speed;
 
     private Weapon[] weapons;
+    private List<Bullet> bullets;
 
     public Ship(TextureRegion texture, float x, float y, float speed, Weapon[] weapons) {
         super(texture);
@@ -22,6 +27,7 @@ public class Ship extends Sprite {
         this.speed = speed;
 
         this.weapons = weapons;
+        this.bullets = new ArrayList<>();
 
         super.setPosition(x, y);
     }
@@ -80,5 +86,13 @@ public class Ship extends Sprite {
         if(index < this.weapons.length){
             this.weapons[index] = weapon;
         }
+    }
+
+    public void shoot(){
+        bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed()));
+    }
+
+    public List<Bullet> getBullets(){
+        return this.bullets;
     }
 }

@@ -31,7 +31,6 @@ public class  LevelScreen extends ScreenAdapter {
     private Music bgMusic;
 
     private SpriteBatch batch;
-
     public LevelScreen() {
 
         stage = new Stage(new ScreenViewport());

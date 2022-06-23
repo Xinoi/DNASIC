@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import de.jjj.dnasic.Bullet;
 
 import de.jjj.dnasic.ships.Enemy1;
 import de.jjj.dnasic.ships.EnemyShip;
