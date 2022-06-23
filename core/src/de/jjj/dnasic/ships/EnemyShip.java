@@ -36,7 +36,8 @@ public class EnemyShip extends Ship {
         }
     }
 
-    private void death(){
+    @Override
+    public void death(){
         System.out.println("Enemy was killed!");
     }
 }

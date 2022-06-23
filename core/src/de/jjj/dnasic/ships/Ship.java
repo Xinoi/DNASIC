@@ -95,4 +95,8 @@ public class Ship extends Sprite {
     public List<Bullet> getBullets(){
         return this.bullets;
     }
+
+    public void death(){
+        System.out.println("Ship was destroyed");
+    }
 }

@@ -97,8 +97,13 @@ public class Level extends ScreenAdapter implements InputProcessor {
             this.shootRegistered = true;
         }
 
-        for(Bullet s : playerShip.getBullets()){
-            s.update(delta);
+        for(Bullet b : playerShip.getBullets()){
+            b.update(delta);
+            for(EnemyShip e : enemies) {
+                if (Intersector.overlaps(b.getBoundingRectangle(), e.getBoundingRectangle())){
+                    e.death();
+                }
+            }
         }
 
         // check collisions

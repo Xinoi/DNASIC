@@ -12,6 +12,7 @@ public class PlayerShip extends Ship {
         super.scale(2);
     }
 
+    @Override
     public void death(){
         System.out.println("Player died!");
     }
