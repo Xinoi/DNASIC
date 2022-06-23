@@ -34,15 +34,13 @@ public class UpgradeScreen extends ScreenAdapter {
     private String currentShip;
     private Button triebwerkeB;
     private TextButton.TextButtonStyle bStyle;
-    //private int[][] Buttonmatrix;
 
 
 
     public UpgradeScreen(){
         currentShip = Level.returncurrentShip();
         createButtonStyles();
-        //Buttonmatrix = new int[][];
-        //Buttonmatrix[3][0] = 250;
+
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -111,6 +109,11 @@ public class UpgradeScreen extends ScreenAdapter {
         stage.dispose();
         bgMusic.dispose();
         batch.dispose();
+    }
+    @Override
+    public void hide(){
+        bgMusic.pause();
+        DNASIC.INSTANCE.setMenuMusic(bgMusic);
     }
 
 }
