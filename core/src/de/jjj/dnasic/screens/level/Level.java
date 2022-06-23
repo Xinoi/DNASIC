@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.ships.PlayerShip;
 
@@ -22,6 +23,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     protected float ticker;
 
     private HashMap<String, Boolean> keysPressed;
+    private boolean shootRegistered;
 
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
@@ -30,6 +32,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         playerShip.rotate(-90);
 
         this.keysPressed = new HashMap<String, Boolean>();
+        this.shootRegistered = false;
 
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         bgMusic.setLooping(true);
@@ -43,6 +46,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public void render(SpriteBatch batch) {
         batch.begin();
         background.draw(batch);
+
+        for(Bullet b : playerShip.getBullets()){
+            b.draw(batch);
+        }
+
         playerShip.draw(batch);
         batch.end();
 
@@ -51,8 +59,6 @@ public class Level extends ScreenAdapter implements InputProcessor {
         }else {
             bgMusic.stop();
         }
-
-
     }
 
     public void update(float delta) {
@@ -75,6 +81,15 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         playerShip.move(moveX, moveY, delta);
         playerShip.keepInBounds();
+
+        if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered){
+            playerShip.shoot();
+            this.shootRegistered = true;
+        }
+
+        for(Bullet s : playerShip.getBullets()){
+            s.update(delta);
+        }
     }
 
 
@@ -88,6 +103,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
             this.keysPressed.put("D", true);
         }if(keycode == Input.Keys.A) {
             this.keysPressed.put("A", true);
+        }if(keycode == Input.Keys.SPACE){
+            this.keysPressed.put("SPACE", true);
         }
         return false;
     }
@@ -102,6 +119,9 @@ public class Level extends ScreenAdapter implements InputProcessor {
             this.keysPressed.put("D", false);
         }if(keycode == Input.Keys.A) {
             this.keysPressed.put("A", false);
+        }if(keycode == Input.Keys.SPACE){
+            this.keysPressed.put("SPACE", false);
+            this.shootRegistered = false;
         }
         return false;
     }
