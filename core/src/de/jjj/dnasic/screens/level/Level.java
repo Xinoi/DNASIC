@@ -26,7 +26,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     private Music bgMusic;
     protected float ticker;
     
-    private List<EnemyShip> enemies;
+    public List<EnemyShip> enemies;
 
     private HashMap<String, Boolean> keysPressed;
     private boolean shootRegistered;

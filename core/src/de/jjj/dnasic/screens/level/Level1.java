@@ -14,7 +14,6 @@ import de.jjj.dnasic.ships.EnemyShip;
 public class Level1 extends Level{
 
     private SpriteBatch batch;
-    private int enemyCount = 0;
 
 
     public Level1() {
@@ -29,11 +28,12 @@ public class Level1 extends Level{
         super.update(delta);
         System.out.println(ticker);
         batch.begin();
-        if(ticker >= 5 && enemyCount < 1) {
+        
+        if(ticker >= 5 && super.enemies.size() < 1) {
         	spawnEnemy(1, 10, 10, batch);
-        	enemyCount ++;
         	System.out.println("enemy");
         }
+        
         batch.end();
     }
 
