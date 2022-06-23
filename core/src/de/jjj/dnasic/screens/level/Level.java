@@ -9,9 +9,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import de.jjj.dnasic.DNASIC;
+import de.jjj.dnasic.ships.Enemy1;
+import de.jjj.dnasic.ships.EnemyShip;
 import de.jjj.dnasic.ships.PlayerShip;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Level extends ScreenAdapter implements InputProcessor {
 
@@ -20,6 +24,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
     TextureAtlas playerAtlas;
     private Music bgMusic;
     protected float ticker;
+    
+    private List<EnemyShip> enemies;
 
     private HashMap<String, Boolean> keysPressed;
 
@@ -35,6 +41,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
         
+        enemies = new ArrayList<EnemyShip>();
+        
         ticker = 0;
 
         Gdx.input.setInputProcessor(this);
@@ -43,6 +51,9 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public void render(SpriteBatch batch) {
         batch.begin();
         background.draw(batch);
+        for(EnemyShip e : enemies) {
+        	e.draw(batch);
+        }
         playerShip.draw(batch);
         batch.end();
 
@@ -71,12 +82,19 @@ public class Level extends ScreenAdapter implements InputProcessor {
             moveX += 1;
         }
         
-        ticker = ticker + 1 * delta;
+        ticker = ticker + delta;
 
         playerShip.move(moveX, moveY, delta);
         playerShip.keepInBounds();
     }
 
+    
+    public void spawnEnemy(int nummer, float x, float y, SpriteBatch batch) {
+    	switch(nummer) {
+    	case 1:
+    		enemies.add(new Enemy1(x, y, batch));
+    	}
+    }
 
     @Override
     public boolean keyDown(int keycode) {
