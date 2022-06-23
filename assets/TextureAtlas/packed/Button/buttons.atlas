@@ -1,12 +1,60 @@
 
 buttons.png
-size: 128, 64
+size: 512, 64
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
+RückPfeil_down
+  rotate: false
+  xy: 217, 14
+  size: 41, 41
+  split: 0, 41, 10, 9
+  pad: 5, 4, -1, -1
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+RückPfeil_up
+  rotate: false
+  xy: 88, 14
+  size: 41, 41
+  split: 0, 41, 10, 9
+  pad: 5, 4, -1, -1
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+SettingsWeel_down
+  rotate: false
+  xy: 174, 14
+  size: 41, 41
+  split: 0, 0, 0, 0
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+SettingsWeel_up
+  rotate: false
+  xy: 2, 14
+  size: 41, 41
+  split: 0, 0, 0, 0
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+buttonRound_down
+  rotate: false
+  xy: 2, 2
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+buttonRound_up
+  rotate: false
+  xy: 260, 45
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
 button_down
   rotate: false
-  xy: 45, 2
+  xy: 131, 14
   size: 41, 41
   split: 0, 0, 0, 0
   orig: 41, 41
@@ -14,7 +62,7 @@ button_down
   index: -1
 button_up
   rotate: false
-  xy: 2, 2
+  xy: 45, 14
   size: 41, 41
   split: 0, 0, 0, 0
   orig: 41, 41

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
+import de.jjj.dnasic.screens.UpgradeScreen;
 import de.jjj.dnasic.ships.Enemy1;
 import de.jjj.dnasic.ships.EnemyShip;
 import de.jjj.dnasic.ships.PlayerShip;
@@ -26,16 +27,15 @@ public class Level extends ScreenAdapter implements InputProcessor {
     TextureAtlas playerAtlas;
     private Music bgMusic;
     protected float ticker;
-    
+    public static String currentShip = "Ship_4";
     public List<EnemyShip> enemies;
-
     private HashMap<String, Boolean> keysPressed;
     private boolean shootRegistered;
 
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
-        playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_2").getRegionHeight(), 500f);
+        playerShip = new PlayerShip(playerAtlas.findRegion(currentShip),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion(currentShip).getRegionHeight(), 500f);
         playerShip.rotate(-90);
 
         this.keysPressed = new HashMap<String, Boolean>();
@@ -86,6 +86,9 @@ public class Level extends ScreenAdapter implements InputProcessor {
         if(this.keysPressed.containsKey("D") && this.keysPressed.get("D")){
             moveX += 1;
         }
+        if(this.keysPressed.containsKey("U") && this.keysPressed.get("U")){
+            DNASIC.INSTANCE.setScreen(new UpgradeScreen());
+        }
         
         ticker = ticker + delta;
 
@@ -124,6 +127,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        // check "U" for Upgrade screen
+        if(keycode == Input.Keys.U) {
+            this.keysPressed.put("U", true);
+        }
+
         if(keycode == Input.Keys.W) {
             this.keysPressed.put("W", true);
         }if(keycode == Input.Keys.S) {
@@ -140,6 +148,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
+        //same here for Upgrade screen
+        if(keycode == Input.Keys.U) {
+            this.keysPressed.put("U", false);
+        }
         if(keycode == Input.Keys.W) {
             this.keysPressed.put("W", false);
         }if(keycode == Input.Keys.S) {
@@ -183,4 +195,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public boolean scrolled(float amountX, float amountY) {
         return false;
     }
+
+    public static String returncurrentShip(){
+        return currentShip;
+    }
+
 }
+
+
