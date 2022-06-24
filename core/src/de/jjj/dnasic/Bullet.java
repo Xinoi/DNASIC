@@ -12,7 +12,7 @@ public class Bullet extends Sprite {
     private float y;
 
     public Bullet(float x, float y, float speed_x){
-        super(new Texture(Gdx.files.internal("Images/Icons/Icon32.png")));
+        super(new Texture(Gdx.files.internal("Images/Laser/LaserRot.png")));
 
         this.speed_x = speed_x;
         this.speed_y = 0;
@@ -21,6 +21,7 @@ public class Bullet extends Sprite {
         this.y = y;
 
         super.setPosition(this.x, this.y);
+        super.setSize(25,4);
     }
 
     public void move(float dx, float dy){
