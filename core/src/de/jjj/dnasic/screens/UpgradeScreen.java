@@ -68,8 +68,9 @@ public class UpgradeScreen extends ScreenAdapter {
 
         //Background Animation
         bgAnimation = DNASIC.INSTANCE.getMenuBackground();
+
         // background Music
-        bgMusic = DNASIC.INSTANCE.getMenuMusic();
+        bgMusic = DNASIC.INSTANCE.getLevelMusic();
 
         Actor backR = new Image(new Texture(Gdx.files.internal("TextureAtlas/Raw/Button/FensterUpgrade.png")));
         backR.setX(892);
@@ -196,7 +197,7 @@ public class UpgradeScreen extends ScreenAdapter {
     @Override
     public void hide(){
         bgMusic.pause();
-        DNASIC.INSTANCE.setMenuMusic(bgMusic);
+        DNASIC.INSTANCE.setLevelMusic(bgMusic);
     }
     public void setRahmen1(){
         Rahmen1 = new TextButton("", bStyle1);
@@ -271,7 +272,4 @@ public class UpgradeScreen extends ScreenAdapter {
         stage.addActor(Rahmen3);
 
     }
-
-
-
 }

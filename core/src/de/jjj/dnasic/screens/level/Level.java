@@ -41,9 +41,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         this.keysPressed = new HashMap<String, Boolean>();
         this.shootRegistered = false;
 
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
-        bgMusic.setLooping(true);
-        bgMusic.setVolume(0.3f);
+        bgMusic = DNASIC.INSTANCE.getLevelMusic();
         
         enemies = new ArrayList<EnemyShip>();
         
@@ -200,6 +198,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
         return currentShip;
     }
 
+    @Override
+    public void hide() {
+        bgMusic.pause();
+        DNASIC.INSTANCE.setLevelMusic(bgMusic);
+    }
 }
 
 

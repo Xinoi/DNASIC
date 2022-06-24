@@ -36,6 +36,7 @@ public class DNASIC extends Game {
 
 
     private Music menuMusic;
+    private Music levelMusic;
 
     private Animation<TextureRegion> menuBackground;
 
@@ -79,6 +80,11 @@ public class DNASIC extends Game {
         this.menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
         this.menuMusic.setLooping(true);
         this.menuMusic.setVolume(0.3f);
+
+        // Initialize music for levels
+        this.levelMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
+        this.levelMusic.setLooping(true);
+        this.levelMusic.setVolume(0.3f);
 
         // Create background for menus
         TextureAtlas menuBackgrouondAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/erde/erde.atlas"));
@@ -172,6 +178,16 @@ public class DNASIC extends Game {
     // Set menu music
     public void setMenuMusic(Music music) {
         this.menuMusic = music;
+    }
+
+    // Get level music
+    public Music getLevelMusic(){
+        return this.levelMusic;
+    }
+
+    // Set level music
+    public void setLevelMusic(Music music){
+        this.levelMusic = music;
     }
 
     // Get background animation for menus
