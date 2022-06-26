@@ -56,7 +56,9 @@ public class Level extends ScreenAdapter implements InputProcessor {
         batch.begin();
         background.draw(batch);
         for(EnemyShip e : enemies) {
-        	e.draw(batch);
+            if(e.getAlive()) {
+                e.draw(batch);
+            }
         }
         for(Bullet b : playerShip.getBullets()){
             b.draw(batch);
@@ -100,23 +102,26 @@ public class Level extends ScreenAdapter implements InputProcessor {
         for(Bullet b : playerShip.getBullets()){
             b.update(delta);
             for(EnemyShip e : enemies) {
-                if (Intersector.overlaps(b.getBoundingRectangle(), e.getBoundingRectangle())){
+                if (Intersector.overlaps(b.getBoundingRectangle(), e.getBoundingRectangle()) && e.getAlive()){
                     e.death();
                 }
             }
         }
 
-        // check collisions
+        // check collisions and remove dead enemies
         for(EnemyShip e : enemies){
-            if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle())){
+            if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
                 playerShip.death();
+            }
+            if(!e.getAlive()){
+
             }
         }
     }
 
     
-    public void spawnEnemy(int nummer, float x, float y, SpriteBatch batch) {
-    	switch(nummer) {
+    public void spawnEnemy(int number, float x, float y, SpriteBatch batch) {
+    	switch(number) {
     	case 1:
     		enemies.add(new Enemy1(x, y, batch));
     	}
