@@ -11,7 +11,6 @@ public class Level1 extends Level{
 
     private SpriteBatch batch;
 
-
     public Level1() {
         super(new Sprite(new Texture(Gdx.files.internal("Images/Background/Background_1.jpg"))));
         batch = new SpriteBatch();
@@ -35,13 +34,13 @@ public class Level1 extends Level{
 
     @Override
     public void hide() {
-
+        super.hide();
     }
 
     @Override
     public void dispose() {
     	batch.dispose();
-    	this.dispose();
+    	super.dispose();
     }
     
 
