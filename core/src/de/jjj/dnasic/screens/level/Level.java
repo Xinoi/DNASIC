@@ -32,6 +32,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
     private HashMap<String, Boolean> keysPressed;
     private boolean shootRegistered;
 
+    SpawnPoint[] spawnPoints;
+
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
@@ -48,6 +50,14 @@ public class Level extends ScreenAdapter implements InputProcessor {
         enemies = new ArrayList<EnemyShip>();
         
         ticker = 0;
+
+        //initialise and fill Spawnpoint list
+        spawnPoints = new SpawnPoint[5];
+        for (int i = 0; i < spawnPoints.length; i++) {
+            for (int e = 1; e <= 5; e++) {
+                spawnPoints[i] = new SpawnPoint(1000, Gdx.graphics.getHeight() / 5 * e);
+            }
+        }
 
         Gdx.input.setInputProcessor(this);
     }
@@ -119,13 +129,25 @@ public class Level extends ScreenAdapter implements InputProcessor {
     }
 
     
-    public void spawnEnemy(int nummer, float x, float y, SpriteBatch batch) {
+    public void spawnEnemy(int nummer, SpriteBatch batch) {
     	switch(nummer) {
     	case 1:
-    		enemies.add(new Enemy1(x, y, batch));
+    		enemies.add(new Enemy1(getFreeSpawnPoint(), batch));
     	}
 
 
+    }
+
+    public SpawnPoint getFreeSpawnPoint() {
+
+        //search for a free spawnPoint
+        for (SpawnPoint p : spawnPoints) {
+            if (p.isFree) {
+                p.use();
+                return p;
+            }
+        }
+        return spawnPoints[3];
     }
 
     @Override

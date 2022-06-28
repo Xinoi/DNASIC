@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import de.jjj.dnasic.Bullet;
+import de.jjj.dnasic.screens.level.SpawnPoint;
 import de.jjj.dnasic.weapons.Weapon;
 
 import java.util.ArrayList;
@@ -32,6 +33,20 @@ public class Ship extends Sprite {
         super.setPosition(x, y);
     }
 
+    public Ship(TextureRegion texture, SpawnPoint p, float speed, Weapon[] weapons) {
+        super(texture);
+
+        this.x = p.getX();
+        this.y = p.getY();
+
+        this.speed = speed;
+
+        this.weapons = weapons;
+        this.bullets = new ArrayList<>();
+
+        super.setPosition(x, y);
+    }
+
     @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
@@ -41,7 +56,7 @@ public class Ship extends Sprite {
     }
 
     public void updatePosition() {
-        this.setCenter(this.x, this.y);
+        this.setPosition(this.x, this.y);
     }
 
     public float getX(){

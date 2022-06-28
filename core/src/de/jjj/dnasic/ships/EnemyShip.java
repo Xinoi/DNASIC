@@ -2,6 +2,7 @@ package de.jjj.dnasic.ships;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import de.jjj.dnasic.screens.level.SpawnPoint;
 import de.jjj.dnasic.weapons.Weapon;
 
 public class EnemyShip extends Ship {
@@ -12,11 +13,25 @@ public class EnemyShip extends Ship {
 
     public EnemyShip(TextureRegion texture, float x, float y, float speed, float turnSpeed, int health, Weapon[] weapons, SpriteBatch batch){
         super(texture, x, y, speed, weapons);
+        this.x = x;
+        this.y = y;
 
         this.turnSpeed = turnSpeed;
 
         this.health = health;
         
+        spawned = true;
+    }
+
+    public EnemyShip(TextureRegion texture, SpawnPoint p, float speed, float turnSpeed, int health, Weapon[] weapons, SpriteBatch batch) {
+        super(texture, p, speed, weapons);
+        this.x = p.getX();
+        this.y = p.getY();
+
+        this.turnSpeed = turnSpeed;
+
+        this.health = health;
+
         spawned = true;
     }
 
@@ -33,13 +48,6 @@ public class EnemyShip extends Ship {
 
         if(this.health <= 0){
             this.death();
-        }
-    }
-
-    public void setSpawn() {
-        if(spawned == true) {
-            this.x = 10;
-            this.y = 10;
         }
     }
 

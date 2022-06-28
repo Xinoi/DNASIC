@@ -25,8 +25,8 @@ public class Level1 extends Level{
         System.out.println(ticker);
         batch.begin();
         
-        if(ticker >= 5 && super.enemies.size() < 1) {
-        	spawnEnemy(1, 10, 10, batch);
+        if(ticker >= 3 && super.enemies.size() < 1) {
+        	spawnEnemy(1, batch);
         	System.out.println("enemy");
         }
         
