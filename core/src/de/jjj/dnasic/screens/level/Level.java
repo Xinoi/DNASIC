@@ -32,7 +32,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     private HashMap<String, Boolean> keysPressed;
     private boolean shootRegistered;
 
-    SpawnPoint[] spawnPoints;
+    SpawnPoint[] spawnPoints1;
 
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
@@ -51,13 +51,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
         
         ticker = 0;
 
-        //initialise and fill Spawnpoint list
-        spawnPoints = new SpawnPoint[5];
-        for (int i = 0; i < spawnPoints.length; i++) {
-            for (int e = 1; e <= 5; e++) {
-                spawnPoints[i] = new SpawnPoint(1000, Gdx.graphics.getHeight() / 5 * e);
-            }
-        }
+        spawnPoints1 = new SpawnPoint[5];
+        fillSpawnPoints();
 
         Gdx.input.setInputProcessor(this);
     }
@@ -103,6 +98,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         playerShip.keepInBounds();
 
         for(EnemyShip e : enemies) {
+            System.out.println(e.getY());
             e.updatePosition();
         }
 
@@ -141,13 +137,19 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public SpawnPoint getFreeSpawnPoint() {
 
         //search for a free spawnPoint
-        for (SpawnPoint p : spawnPoints) {
+        for (SpawnPoint p : spawnPoints1) {
             if (p.isFree) {
                 p.use();
                 return p;
             }
         }
-        return spawnPoints[3];
+        return spawnPoints1[3];
+    }
+
+    public void fillSpawnPoints() {
+        for (int i = 0; i < spawnPoints1.length; i++) {
+            spawnPoints1[i] = new SpawnPoint(800, Gdx.graphics.getHeight() / 6 * (i + 1));
+        }
     }
 
     @Override
