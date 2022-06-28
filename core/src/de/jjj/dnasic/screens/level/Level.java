@@ -203,6 +203,14 @@ public class Level extends ScreenAdapter implements InputProcessor {
         bgMusic.pause();
         DNASIC.INSTANCE.setLevelMusic(bgMusic);
     }
+
+    @Override
+    public void show() {
+        super.show();
+
+        this.keysPressed = new HashMap<>();
+        Gdx.input.setInputProcessor(this);
+    }
 }
 
 

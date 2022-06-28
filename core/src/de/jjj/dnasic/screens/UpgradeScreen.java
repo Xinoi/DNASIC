@@ -32,7 +32,7 @@ public class UpgradeScreen extends ScreenAdapter {
     private Music bgMusic;
     private float elapsedTime;
     private TextureAtlas ShipP;
-    private  TextureAtlas buttonAtlas;
+    private TextureAtlas buttonAtlas;
     private String currentShip;
     private String Triebwerk_1_T;
     private String Triebwerk_2_T;
@@ -45,19 +45,16 @@ public class UpgradeScreen extends ScreenAdapter {
     private Button Rahmen3;
     private TextButton.TextButtonStyle bStyle;
     private TextButton.TextButtonStyle bStyle1;
+    private TextButton backButton;
     private int currentTriebwerk = 1;
     private boolean TribButtonPressed;
     private boolean hpButtonPressed;
     private boolean gunButtonPressed;
     private final Sound clickSound;
 
-
-
     public UpgradeScreen(){
         currentShip = Level.returncurrentShip();
         createButtonStyles();
-
-
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -138,16 +135,23 @@ public class UpgradeScreen extends ScreenAdapter {
             }
         });
 
-
+        backButton = new TextButton("  Back  ", DNASIC.INSTANCE.getButtonStyle());
+        backButton.setPosition(50, 50);
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("Back to level");
+                System.out.println(DNASIC.INSTANCE.getLastScreen());
+                DNASIC.INSTANCE.setScreen(DNASIC.INSTANCE.getLastScreen());
+            }
+        });
 
         stage.addActor(backR);
         stage.addActor(Ship);
-        stage.addActor(DNASIC.INSTANCE.BackB);
+        stage.addActor(backButton);
         stage.addActor(triebwerkeB);
         stage.addActor(hpB);
         stage.addActor(gunB);
-
-
     }
 
     @Override

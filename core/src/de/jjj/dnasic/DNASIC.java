@@ -2,6 +2,7 @@ package de.jjj.dnasic;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
@@ -34,6 +35,8 @@ public class DNASIC extends Game {
 
     private BitmapFont font;
 
+    private Screen lastScreen;
+    private Screen currentScreen;
 
     private Music menuMusic;
     private Music levelMusic;
@@ -193,5 +196,17 @@ public class DNASIC extends Game {
     // Get background animation for menus
     public Animation getMenuBackground(){
         return this.menuBackground;
+    }
+
+    @Override
+    public void setScreen(Screen screen) {
+        this.lastScreen = this.currentScreen;
+        this.currentScreen = screen;
+
+        super.setScreen(screen);
+    }
+
+    public Screen getLastScreen(){
+        return this.lastScreen;
     }
 }
