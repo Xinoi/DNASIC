@@ -139,7 +139,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
             }
         }
 
-        if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") || this.keysPressed.containsKey("LEFT") && this.keysPressed.get("LEFT") && !this.shootRegistered){
+        if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered || this.keysPressed.containsKey("LEFT") && this.keysPressed.get("LEFT") && !this.shootRegistered){
             playerShip.shoot();
             this.shootRegistered = true;
         }

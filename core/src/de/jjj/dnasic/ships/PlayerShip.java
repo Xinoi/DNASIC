@@ -16,7 +16,7 @@ public class PlayerShip extends Ship {
 
     @Override
     public void death(){
-        //DNASIC.INSTANCE.setScreen(new DeathScreen());
+        DNASIC.INSTANCE.setScreen(new DeathScreen());
     }
 
     public void update(float ticker) {
