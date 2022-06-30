@@ -202,6 +202,7 @@ public class UpgradeScreen extends ScreenAdapter {
     public void hide(){
         bgMusic.pause();
         DNASIC.INSTANCE.setLevelMusic(bgMusic);
+        this.dispose();
     }
     public void setRahmen1(){
         Rahmen1 = new TextButton("", bStyle1);

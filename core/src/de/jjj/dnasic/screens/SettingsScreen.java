@@ -104,6 +104,7 @@ public class SettingsScreen extends ScreenAdapter{
 	public void hide() {
 		bgMusic.pause();
 		DNASIC.INSTANCE.setMenuMusic(bgMusic);
+		this.dispose();
 	}
 	@Override
 	public void dispose() {

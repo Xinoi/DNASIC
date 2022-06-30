@@ -2,6 +2,7 @@ package de.jjj.dnasic.ships;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import de.jjj.dnasic.DNASIC;
+import de.jjj.dnasic.screens.DeathScreen;
 import de.jjj.dnasic.screens.MenuScreen;
 import de.jjj.dnasic.weapons.Weapon;
 
@@ -14,6 +15,6 @@ public class PlayerShip extends Ship {
 
     @Override
     public void death(){
-        DNASIC.INSTANCE.setScreen(new MenuScreen());
+        DNASIC.INSTANCE.setScreen(new DeathScreen());
     }
 }
