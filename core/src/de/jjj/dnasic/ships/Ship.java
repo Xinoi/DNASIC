@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ship extends Sprite {
+    private int health;
+
     protected float x;
     protected float y;
 
@@ -19,7 +21,7 @@ public class Ship extends Sprite {
     private Weapon[] weapons;
     private List<Bullet> bullets;
 
-    public Ship(TextureRegion texture, float x, float y, float speed, Weapon[] weapons) {
+    public Ship(TextureRegion texture, float x, float y, float speed, Weapon[] weapons, int health) {
         super(texture);
 
         this.x = x;
@@ -30,10 +32,12 @@ public class Ship extends Sprite {
         this.weapons = weapons;
         this.bullets = new ArrayList<>();
 
+        this.health = health;
+
         super.setPosition(x, y);
     }
 
-    public Ship(TextureRegion texture, SpawnPoint p, float speed, Weapon[] weapons) {
+    public Ship(TextureRegion texture, SpawnPoint p, float speed, Weapon[] weapons, int health) {
         super(texture);
 
         this.x = p.getX();
@@ -43,6 +47,8 @@ public class Ship extends Sprite {
 
         this.weapons = weapons;
         this.bullets = new ArrayList<>();
+
+        this.health = health;
 
         super.setPosition(x, y);
     }
@@ -125,5 +131,17 @@ public class Ship extends Sprite {
 
     public void removeBullet(Bullet b){
         this.bullets.remove(b);
+    }
+
+    public int getHealth(){
+        return this.health;
+    }
+
+    public void inflictDamage(int amount){
+        this.health -= amount;
+
+        if(this.health <= 0){
+            this.death();
+        }
     }
 }

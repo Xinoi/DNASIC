@@ -8,33 +8,28 @@ import de.jjj.dnasic.screens.level.SpawnPoint;
 import de.jjj.dnasic.weapons.Weapon;
 
 public class EnemyShip extends Ship {
-    private int health;
-
     private float turnSpeed;
     private boolean spawned = false;
     private boolean alive;
 
     public EnemyShip(TextureRegion texture, float x, float y, float speed, float turnSpeed, int health, Weapon[] weapons, SpriteBatch batch){
-        super(texture, x, y, speed, weapons);
+        super(texture, x, y, speed, weapons, health);
         this.x = x;
         this.y = y;
 
         this.turnSpeed = turnSpeed;
 
-        this.health = health;
         this.alive = true;
         
         spawned = true;
     }
 
     public EnemyShip(TextureRegion texture, SpawnPoint p, float speed, float turnSpeed, int health, Weapon[] weapons, SpriteBatch batch) {
-        super(texture, p, speed, weapons);
+        super(texture, p, speed, weapons, health);
         this.x = p.getX();
         this.y = p.getY();
 
         this.turnSpeed = turnSpeed;
-
-        this.health = health;
 
         spawned = true;
     }
@@ -53,21 +48,9 @@ public class EnemyShip extends Ship {
         this.setRotation(angleToPlayer + 90);
 
     }
-
-    public int getHealth(){
-        return this.health;
-    }
     
     public boolean isSpawned() {
     	return spawned;
-    }
-
-    public void inflictDamage(int amount){
-        this.health -= amount;
-
-        if(this.health <= 0){
-            this.death();
-        }
     }
 
     @Override

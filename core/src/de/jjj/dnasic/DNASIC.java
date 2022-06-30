@@ -85,7 +85,7 @@ public class DNASIC extends Game {
         this.menuMusic.setVolume(0.3f);
 
         // Initialize music for levels
-        this.levelMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
+        this.levelMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Asteroid.mp3"));
         this.levelMusic.setLooping(true);
         this.levelMusic.setVolume(0.3f);
 
