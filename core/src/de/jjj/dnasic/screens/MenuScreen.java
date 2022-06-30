@@ -126,6 +126,7 @@ public class MenuScreen extends ScreenAdapter {
     public void hide() {
         bgMusic.pause();
         DNASIC.INSTANCE.setMenuMusic(bgMusic);
+        this.dispose();
     }
 
     @Override

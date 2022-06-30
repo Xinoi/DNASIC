@@ -5,11 +5,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.sun.org.apache.xml.internal.dtm.ref.dom2dtm.DOM2DTMdefaultNamespaceDeclarationNode;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.screens.UpgradeScreen;
@@ -17,6 +20,7 @@ import de.jjj.dnasic.ships.Enemy1;
 import de.jjj.dnasic.ships.EnemyShip;
 import de.jjj.dnasic.ships.PlayerShip;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,6 +29,8 @@ import java.util.List;
 public class Level extends ScreenAdapter implements InputProcessor {
 
     private Sprite background;
+    private Sprite healthImage;
+    private BitmapFont healthText;
     private PlayerShip playerShip;
     TextureAtlas playerAtlas;
     private Music bgMusic;
@@ -42,6 +48,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
         playerShip = new PlayerShip(playerAtlas.findRegion(currentShip),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion(currentShip).getRegionHeight(), 500f);
         playerShip.rotate(-90);
+
+        healthImage = new Sprite(new Texture(Gdx.files.internal("Images/Icons/heart.png")));
+        healthImage.setPosition(healthImage.getX() + 10, Gdx.graphics.getHeight() - healthImage.getHeight() - 10);
+        healthText = DNASIC.INSTANCE.getFont();
 
         this.keysPressed = new HashMap<String, Boolean>();
         this.shootRegistered = false;
@@ -62,6 +72,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public void render(SpriteBatch batch) {
         batch.begin();
         background.draw(batch);
+        healthImage.draw(batch);
+        healthText.draw(batch, String.valueOf(playerShip.getHealth()), healthImage.getX() + 7, healthImage.getY() + 45);
         for(EnemyShip e : enemies) {
             if(e.getAlive()) {
                 e.draw(batch);
@@ -273,6 +285,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public void hide() {
         bgMusic.pause();
         DNASIC.INSTANCE.setLevelMusic(bgMusic);
+        this.dispose();
     }
 
     @Override
