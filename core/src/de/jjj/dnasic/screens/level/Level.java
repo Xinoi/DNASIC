@@ -111,6 +111,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
                     break;
                 }
             }
+
+            if(b.getX() < 0 || b.getX() > Gdx.graphics.getWidth()){
+                iterator.remove();
+            }
         }
 
         // check collisions and remove dead enemies
