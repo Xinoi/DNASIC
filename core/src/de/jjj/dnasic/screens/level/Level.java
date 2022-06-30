@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -33,6 +34,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     private boolean shootRegistered;
 
     SpawnPoint[] spawnPoints1;
+    SpawnPoint[] spawnPoints2;
 
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
@@ -52,6 +54,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         ticker = 0;
 
         spawnPoints1 = new SpawnPoint[5];
+        spawnPoints2 = new SpawnPoint[5];
         fillSpawnPoints();
 
         Gdx.input.setInputProcessor(this);
@@ -101,6 +104,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         for(EnemyShip e : enemies) {
             e.updatePosition();
+            e.update(playerShip.getX(), playerShip.getY());
         }
 
         if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered){
@@ -123,6 +127,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
                 playerShip.death();
             }
         }
+
+
     }
 
     
@@ -144,12 +150,21 @@ public class Level extends ScreenAdapter implements InputProcessor {
                 return p;
             }
         }
+        for (SpawnPoint p : spawnPoints2) {
+            if (p.isFree) {
+                p.use();
+                return p;
+            }
+        }
         return spawnPoints1[3];
     }
 
     public void fillSpawnPoints() {
         for (int i = 0; i < spawnPoints1.length; i++) {
             spawnPoints1[i] = new SpawnPoint(800, Gdx.graphics.getHeight() / 6 * (i + 1));
+        }
+        for (int i = 0; i < spawnPoints2.length; i++) {
+            spawnPoints2[i] = new SpawnPoint(600, Gdx.graphics.getHeight() / 6 * (i + 1));
         }
     }
 
