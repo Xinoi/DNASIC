@@ -25,7 +25,7 @@ public class SpawnPoint{
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        isFree = false;
+                        isFree = true;
                     }
                 }, 1000);
             }

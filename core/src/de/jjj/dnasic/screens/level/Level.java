@@ -122,6 +122,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         playerShip.move(moveX, moveY, delta);
         playerShip.keepInBounds();
+        playerShip.update(ticker);
 
         for(EnemyShip e : enemies) {
             if(e.getAlive()) {
@@ -164,6 +165,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         for(EnemyShip e : enemies){
             if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
                 playerShip.inflictDamage(10);
+                System.out.println("player got damage");
             }
             if(!e.getAlive()){
 
