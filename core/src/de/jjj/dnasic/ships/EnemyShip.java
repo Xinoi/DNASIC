@@ -7,10 +7,16 @@ import com.badlogic.gdx.math.Vector2;
 import de.jjj.dnasic.screens.level.SpawnPoint;
 import de.jjj.dnasic.weapons.Weapon;
 
+import java.util.Random;
+
 public class EnemyShip extends Ship {
     private float turnSpeed;
     private boolean spawned = false;
     private boolean alive;
+    private float shootTime;
+    private Boolean shot = false;
+
+    private Random r = new Random();
 
     public EnemyShip(TextureRegion texture, float x, float y, float speed, float turnSpeed, int health, Weapon[] weapons, SpriteBatch batch){
         super(texture, x, y, speed, weapons, health);
@@ -34,7 +40,7 @@ public class EnemyShip extends Ship {
         spawned = true;
     }
 
-    public void update(float playerShipx, float playerSipy) {
+    public void update(float playerShipx, float playerSipy, float ticker) {
         //get Winklel zu player
         Vector2 playerPosition = new Vector2(playerShipx, playerSipy);
         Vector2 position = new Vector2(this.getX(), this.getY());
@@ -46,6 +52,19 @@ public class EnemyShip extends Ship {
 
         //set Rotation to player
         this.setRotation(angleToPlayer + 90);
+
+        //shooting
+        int delay = r.nextInt(2) + 1;
+
+        if(shot == false) {
+            shootTime = ticker + delay;
+            shot = true;
+            System.out.println("shoot:" + shootTime);
+        }
+        if(ticker > shootTime && shot) {
+            this.shoot();
+            shot = false;
+        }
 
     }
     

@@ -126,7 +126,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         for(EnemyShip e : enemies) {
             if(e.getAlive()) {
                 e.updatePosition();
-                e.update(playerShip.getX(), playerShip.getY());
+                e.update(playerShip.getX(), playerShip.getY(), ticker);
             }
 
             for(Iterator<Bullet> iterator = e.getBullets().iterator(); iterator.hasNext();){
