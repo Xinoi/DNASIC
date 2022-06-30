@@ -3,6 +3,7 @@ package de.jjj.dnasic.ships;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.screens.MenuScreen;
 import de.jjj.dnasic.weapons.Weapon;
