@@ -46,7 +46,7 @@ public class EnemyShip extends Ship {
         spawned = true;
     }
 
-    public void update(float playerShipx, float playerSipy, float ticker) {
+    public void control(float playerShipx, float playerSipy, float ticker) {
         //get Winklel zu player
         Vector2 playerPosition = new Vector2(playerShipx, playerSipy);
         Vector2 position = new Vector2(this.getX(), this.getY());

@@ -90,7 +90,7 @@ public class DNASIC extends Game {
         this.levelMusic.setLooping(true);
 
         this.deathMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/DeathMusic.mp3"));
-        this.deathMusic.setLooping(true);
+        this.deathMusic.setLooping(false);
         this.deathMusic.setVolume(0.8f);
 
         // Create background for menus

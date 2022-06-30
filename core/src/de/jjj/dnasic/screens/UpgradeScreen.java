@@ -140,9 +140,7 @@ public class UpgradeScreen extends ScreenAdapter {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("Back to level");
-                System.out.println(DNASIC.INSTANCE.getLastScreen());
-                DNASIC.INSTANCE.setScreen(DNASIC.INSTANCE.getLastScreen());
+                DNASIC.INSTANCE.setScreen(new MenuScreen());
             }
         });
 
