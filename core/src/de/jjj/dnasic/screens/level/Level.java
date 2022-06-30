@@ -87,10 +87,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
         }
         if(this.keysPressed.containsKey("A") && this.keysPressed.get("A")){
             moveX -= 1;
+            playerShip.setRotation(90);
         }
         if(this.keysPressed.containsKey("D") && this.keysPressed.get("D")){
             moveX += 1;
-
+            playerShip.setRotation(-90);
         }
 
         ticker = ticker + delta;
@@ -160,10 +161,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
             this.keysPressed.put("S", true);
         }if(keycode == Input.Keys.D) {
             this.keysPressed.put("D", true);
-            playerShip.setRotation(-90);
         }if(keycode == Input.Keys.A) {
             this.keysPressed.put("A", true);
-            playerShip.setRotation(90);
         }if(keycode == Input.Keys.SPACE){
             this.keysPressed.put("SPACE", true);
         }

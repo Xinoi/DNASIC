@@ -108,7 +108,11 @@ public class Ship extends Sprite {
     }
 
     public void shoot(){
-        bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed()));
+        if(this.getRotation() == -90) {
+            bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed()));
+        } else {
+            bullets.add(new Bullet(this.x, this.y, -this.weapons[0].getBulletSpeed()));
+        }
     }
 
     public List<Bullet> getBullets(){
