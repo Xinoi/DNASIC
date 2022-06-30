@@ -1,5 +1,6 @@
 package de.jjj.dnasic.ships;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector;
@@ -14,7 +15,12 @@ public class EnemyShip extends Ship {
     private boolean spawned = false;
     private boolean alive;
     private float shootTime;
+    private float moveTime;
     private Boolean shot = false;
+    private Boolean moved = false;
+    private Boolean up;
+    private Boolean right;
+    private int moveAmount;
 
     private Random r = new Random();
 
@@ -59,12 +65,56 @@ public class EnemyShip extends Ship {
         if(shot == false) {
             shootTime = ticker + delay;
             shot = true;
-            System.out.println("shoot:" + shootTime);
         }
         if(ticker > shootTime && shot) {
             this.shoot();
             shot = false;
         }
+
+        //movement
+
+        if(moved == false) {
+            up = r.nextBoolean();
+            right = r.nextBoolean();
+            int movDelay = r.nextInt(1);
+
+            moveAmount = r.nextInt(400) + 1;
+            moveTime = ticker + movDelay;
+            moved = true;
+        }
+        if(ticker > moveTime && moved) {
+            System.out.println(String.valueOf(up));
+            if(up) {
+                    this.move(0, 1, 1);
+                    if(this.y > Gdx.graphics.getHeight() - 100) {
+                        up = false;
+                    }
+            }else {
+                    this.move(0, -1, 1);
+                    if(this.y <= 100) {
+                        up = true;
+                    }
+            }
+
+            if(right) {
+                this.move(1, 0, 1);
+                if(this.x > Gdx.graphics.getWidth() - 100) {
+                    right = false;
+                }
+            }else {
+                this.move(-1, 0, 1);
+                if(this.x <= 100) {
+                    right = true;
+                }
+            }
+
+            moveAmount --;
+            if(moveAmount == 0) {
+                moved = false;
+            }
+        }
+
+
 
     }
     

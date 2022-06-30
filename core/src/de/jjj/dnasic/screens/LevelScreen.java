@@ -5,7 +5,9 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -26,8 +28,10 @@ public class  LevelScreen extends ScreenAdapter {
     private Image lvl2;
     private Image lvl3;
 
+    float elapsedTime;
     private Label selectText;
 
+    private Animation<TextureRegion> bgAnimation;
     private Music bgMusic;
 
     private SpriteBatch batch;
@@ -35,6 +39,8 @@ public class  LevelScreen extends ScreenAdapter {
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+
+        bgAnimation = DNASIC.INSTANCE.getMenuBackground();
 
         batch = new SpriteBatch();
 
@@ -101,6 +107,11 @@ public class  LevelScreen extends ScreenAdapter {
         }else {
             bgMusic.stop();
         }
+
+        batch.begin();
+        elapsedTime += Gdx.graphics.getDeltaTime();
+        batch.draw(bgAnimation.getKeyFrame(elapsedTime, true), 0, 0);
+        batch.end();
 
         stage.act(delta);
         stage.draw();

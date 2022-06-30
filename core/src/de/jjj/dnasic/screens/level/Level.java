@@ -163,7 +163,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         // check collisions and remove dead enemies
         for(EnemyShip e : enemies){
             if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
-                playerShip.death();
+                playerShip.inflictDamage(10);
             }
             if(!e.getAlive()){
 
