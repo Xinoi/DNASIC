@@ -2,6 +2,7 @@ package de.jjj.dnasic;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Json;
 import de.jjj.dnasic.screens.MenuScreen;
 
@@ -27,15 +29,17 @@ public class DNASIC extends Game {
 
     public TextButton BackB;
     private TextureAtlas atlas;
-    private Skin skin;
     private TextButton.TextButtonStyle bStyle;
 
     private Sound clickSound;
 
     private BitmapFont font;
 
+    private Screen lastScreen;
+    private Screen currentScreen;
 
     private Music menuMusic;
+    private Music levelMusic;
 
     private Animation<TextureRegion> menuBackground;
 
@@ -80,6 +84,11 @@ public class DNASIC extends Game {
         this.menuMusic.setLooping(true);
         this.menuMusic.setVolume(0.3f);
 
+        // Initialize music for levels
+        this.levelMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
+        this.levelMusic.setLooping(true);
+        this.levelMusic.setVolume(0.3f);
+
         // Create background for menus
         TextureAtlas menuBackgrouondAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/erde/erde.atlas"));
         this.menuBackground = new Animation<TextureRegion>(1/5f, menuBackgrouondAtlas.getRegions());
@@ -115,13 +124,11 @@ public class DNASIC extends Game {
 
     private void createButtonStyles() {
         atlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
-        skin = new Skin();
-        skin.addRegions(atlas);
         bStyle = new TextButton.TextButtonStyle();
         bStyle.font = font;
         bStyle.fontColor = Color.GRAY;
-        bStyle.up = skin.getDrawable("button_up");
-        bStyle.down = skin.getDrawable("button_down");
+        bStyle.up = new TextureRegionDrawable(atlas.findRegion("button_up"));
+        bStyle.down = new TextureRegionDrawable(atlas.findRegion("button_down"));
         bStyle.pressedOffsetX = 1;
         bStyle.pressedOffsetY = -1;
     }
@@ -177,8 +184,30 @@ public class DNASIC extends Game {
         this.menuMusic = music;
     }
 
+    // Get level music
+    public Music getLevelMusic(){
+        return this.levelMusic;
+    }
+
+    // Set level music
+    public void setLevelMusic(Music music){
+        this.levelMusic = music;
+    }
+
     // Get background animation for menus
     public Animation getMenuBackground(){
         return this.menuBackground;
+    }
+
+    @Override
+    public void setScreen(Screen screen) {
+        this.lastScreen = this.currentScreen;
+        this.currentScreen = screen;
+
+        super.setScreen(screen);
+    }
+
+    public Screen getLastScreen(){
+        return this.lastScreen;
     }
 }

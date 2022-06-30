@@ -109,9 +109,9 @@ public class Ship extends Sprite {
 
     public void shoot(){
         if(this.getRotation() == -90) {
-            bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed()));
+            bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage()));
         } else {
-            bullets.add(new Bullet(this.x, this.y, -this.weapons[0].getBulletSpeed()));
+            bullets.add(new Bullet(this.x, this.y, -this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage()));
         }
     }
 
@@ -121,5 +121,9 @@ public class Ship extends Sprite {
 
     public void death(){
         System.out.println("Ship was destroyed");
+    }
+
+    public void removeBullet(Bullet b){
+        this.bullets.remove(b);
     }
 }

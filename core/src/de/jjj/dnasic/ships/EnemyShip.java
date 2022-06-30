@@ -12,6 +12,7 @@ public class EnemyShip extends Ship {
 
     private float turnSpeed;
     private boolean spawned = false;
+    private boolean alive;
 
     public EnemyShip(TextureRegion texture, float x, float y, float speed, float turnSpeed, int health, Weapon[] weapons, SpriteBatch batch){
         super(texture, x, y, speed, weapons);
@@ -21,6 +22,7 @@ public class EnemyShip extends Ship {
         this.turnSpeed = turnSpeed;
 
         this.health = health;
+        this.alive = true;
         
         spawned = true;
     }
@@ -70,7 +72,11 @@ public class EnemyShip extends Ship {
 
     @Override
     public void death(){
-        System.out.println("Enemy was killed!");
+        this.alive = false;
+    }
+
+    public boolean getAlive(){
+        return this.alive;
     }
 }
 

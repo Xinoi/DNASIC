@@ -12,12 +12,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
+import de.jjj.dnasic.screens.UpgradeScreen;
 import de.jjj.dnasic.ships.Enemy1;
 import de.jjj.dnasic.ships.EnemyShip;
 import de.jjj.dnasic.ships.PlayerShip;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class Level extends ScreenAdapter implements InputProcessor {
@@ -27,9 +29,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
     TextureAtlas playerAtlas;
     private Music bgMusic;
     protected float ticker;
-    
+    public static String currentShip = "Ship_1";
     public List<EnemyShip> enemies;
-
     private HashMap<String, Boolean> keysPressed;
     private boolean shootRegistered;
 
@@ -39,15 +40,13 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
-        playerShip = new PlayerShip(playerAtlas.findRegion("Ship_1"),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion("Ship_2").getRegionHeight(), 500f);
+        playerShip = new PlayerShip(playerAtlas.findRegion(currentShip),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion(currentShip).getRegionHeight(), 500f);
         playerShip.rotate(-90);
 
         this.keysPressed = new HashMap<String, Boolean>();
         this.shootRegistered = false;
 
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Rebel.mp3"));
-        bgMusic.setLooping(true);
-        bgMusic.setVolume(0.3f);
+        bgMusic = DNASIC.INSTANCE.getLevelMusic();
         
         enemies = new ArrayList<EnemyShip>();
         
@@ -64,7 +63,9 @@ public class Level extends ScreenAdapter implements InputProcessor {
         batch.begin();
         background.draw(batch);
         for(EnemyShip e : enemies) {
-        	e.draw(batch);
+            if(e.getAlive()) {
+                e.draw(batch);
+            }
         }
         for(Bullet b : playerShip.getBullets()){
             b.draw(batch);
@@ -97,6 +98,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
             playerShip.setRotation(-90);
         }
 
+        if(this.keysPressed.containsKey("U") && this.keysPressed.get("U")){
+            DNASIC.INSTANCE.setScreen(new UpgradeScreen());
+        }
+        
         ticker = ticker + delta;
 
         playerShip.move(moveX, moveY, delta);
@@ -112,33 +117,39 @@ public class Level extends ScreenAdapter implements InputProcessor {
             this.shootRegistered = true;
         }
 
-        for(Bullet b : playerShip.getBullets()){
+        for(Iterator<Bullet> iterator = playerShip.getBullets().iterator(); iterator.hasNext();){
+            Bullet b = iterator.next();
             b.update(delta);
             for(EnemyShip e : enemies) {
-                if (Intersector.overlaps(b.getBoundingRectangle(), e.getBoundingRectangle())){
-                    e.death();
+                if (Intersector.overlaps(b.getBoundingRectangle(), e.getBoundingRectangle()) && e.getAlive()){
+                    e.inflictDamage(b.getDamage());
+                    iterator.remove();
+                    break;
                 }
             }
-        }
 
-        // check collisions
-        for(EnemyShip e : enemies){
-            if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle())){
-                playerShip.death();
+            if(b.getX() < 0 || b.getX() > Gdx.graphics.getWidth()){
+                iterator.remove();
             }
         }
 
+        // check collisions and remove dead enemies
+        for(EnemyShip e : enemies){
+            if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
+                playerShip.death();
+            }
+            if(!e.getAlive()){
 
+            }
+        }
     }
-
     
     public void spawnEnemy(int nummer, SpriteBatch batch) {
     	switch(nummer) {
+
     	case 1:
     		enemies.add(new Enemy1(getFreeSpawnPoint(), batch));
     	}
-
-
     }
 
     public SpawnPoint getFreeSpawnPoint() {
@@ -170,6 +181,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        // check "U" for Upgrade screen
+        if(keycode == Input.Keys.U) {
+            this.keysPressed.put("U", true);
+        }
+
         if(keycode == Input.Keys.W) {
             this.keysPressed.put("W", true);
         }if(keycode == Input.Keys.S) {
@@ -186,6 +202,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
+        //same here for Upgrade screen
+        if(keycode == Input.Keys.U) {
+            this.keysPressed.put("U", false);
+        }
         if(keycode == Input.Keys.W) {
             this.keysPressed.put("W", false);
         }if(keycode == Input.Keys.S) {
@@ -229,4 +249,24 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public boolean scrolled(float amountX, float amountY) {
         return false;
     }
+
+    public static String returncurrentShip(){
+        return currentShip;
+    }
+
+    @Override
+    public void hide() {
+        bgMusic.pause();
+        DNASIC.INSTANCE.setLevelMusic(bgMusic);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
+        this.keysPressed = new HashMap<>();
+        Gdx.input.setInputProcessor(this);
+    }
 }
+
+

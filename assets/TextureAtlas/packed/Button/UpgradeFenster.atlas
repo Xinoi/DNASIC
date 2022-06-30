@@ -1,0 +1,33 @@
+
+UpgradeFenster.png
+size: 312, 1094
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+FensterUpgrade
+  rotate: false
+  xy: 2, 292
+  size: 308, 800
+  split: 0, 0, 0, 800
+  pad: -1, -1, 0, 0
+  orig: 308, 800
+  offset: 0, 0
+  index: -1
+UpgradeFenster_down
+  rotate: false
+  xy: 2, 2
+  size: 243, 143
+  split: 0, 0, 0, 0
+  pad: 0, 0, -1, -1
+  orig: 243, 143
+  offset: 0, 0
+  index: -1
+UpgradeFenster_up
+  rotate: false
+  xy: 2, 147
+  size: 243, 143
+  split: 0, 0, 0, 0
+  pad: -1, -1, 0, 0
+  orig: 243, 143
+  offset: 0, 0
+  index: -1

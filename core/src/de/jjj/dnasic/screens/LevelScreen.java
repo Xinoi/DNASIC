@@ -81,8 +81,6 @@ public class  LevelScreen extends ScreenAdapter {
         // background Music
         bgMusic = DNASIC.INSTANCE.getMenuMusic();
 
-
-
         stage.addActor(table);
         stage.addActor(DNASIC.INSTANCE.BackB);
     }
