@@ -265,6 +265,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if(button == Input.Buttons.LEFT) {
             this.keysPressed.put("LEFT", false);
+            this.shootRegistered = false;
         }
         return false;
     }

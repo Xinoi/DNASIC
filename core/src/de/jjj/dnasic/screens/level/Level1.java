@@ -30,9 +30,9 @@ public class Level1 extends Level{
             spawnEnemy(1, batch);
         } else if (ticker >= 30 && super.enemies.size() < 15) {
             spawnEnemy(1, batch);
-        } else if (ticker >= 50 && super.enemies.size() < 22) {
+        } else if (ticker >= 45 && super.enemies.size() < 22) {
             spawnEnemy(1, batch);
-        } else if (ticker >= 65 && super.enemies.size() < 30) {
+        } else if (ticker >= 60 && super.enemies.size() < 30) {
             spawnEnemy(1, batch);
         } else if (ticker >= 75 && super.enemies.size() < 34) {
             spawnEnemy(1, batch);
