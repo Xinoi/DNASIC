@@ -18,6 +18,7 @@ import de.jjj.dnasic.ships.PlayerShip;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class Level extends ScreenAdapter implements InputProcessor {
@@ -100,11 +101,14 @@ public class Level extends ScreenAdapter implements InputProcessor {
             this.shootRegistered = true;
         }
 
-        for(Bullet b : playerShip.getBullets()){
+        for(Iterator<Bullet> iterator = playerShip.getBullets().iterator(); iterator.hasNext();){
+            Bullet b = iterator.next();
             b.update(delta);
             for(EnemyShip e : enemies) {
                 if (Intersector.overlaps(b.getBoundingRectangle(), e.getBoundingRectangle()) && e.getAlive()){
-                    e.death();
+                    e.inflictDamage(b.getDamage());
+                    iterator.remove();
+                    break;
                 }
             }
         }
