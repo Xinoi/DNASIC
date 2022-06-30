@@ -83,7 +83,6 @@ public class EnemyShip extends Ship {
             moved = true;
         }
         if(ticker > moveTime && moved) {
-            System.out.println(String.valueOf(up));
             if(up) {
                     this.move(0, 1, 1);
                     if(this.y > Gdx.graphics.getHeight() - 100) {

@@ -20,16 +20,16 @@ public class PlayerShip extends Ship {
     }
 
     public void update(float ticker) {
-        Vector2 P = new Vector2(this.x, this.y);
-        Vector2 M = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-        Vector2 L = new Vector2(this.getX() - 10, this.getY());
-        Vector2 PL = new Vector2(P.x - L.x, P.y - L.y);
-        Vector2 PM = new Vector2(P.x - M.x, P.y - M.y);
+        Vector2 MousePosition = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+        Vector2 position = new Vector2(this.getX(), this.getY());
+        Vector2 line = new Vector2(this.getX() - 10, this.getY());
+        Vector2 toLine = new Vector2(line.x - position.x, line.y - position.y);
+        Vector2 toMouse = new Vector2(MousePosition.x - position.x, MousePosition.y - position.y);
 
-        float angleToMouse = PM.angleDeg(PL) * -1;
-        System.out.println("angle: "+ angleToMouse);
+        float angleToPlayer = toMouse.angleDeg(toLine);
+        System.out.println("angle: "+ angleToPlayer);
 
-        this.setRotation(angleToMouse + 90);
+        this.setRotation(angleToPlayer + 90);
     }
 
 }

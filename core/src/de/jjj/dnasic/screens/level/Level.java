@@ -117,7 +117,6 @@ public class Level extends ScreenAdapter implements InputProcessor {
         if(this.keysPressed.containsKey("U") && this.keysPressed.get("U")){
             DNASIC.INSTANCE.setScreen(new UpgradeScreen());
         }
-        
         ticker = ticker + delta;
 
         playerShip.move(moveX, moveY, delta);
@@ -140,7 +139,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
             }
         }
 
-        if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered){
+        if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") || this.keysPressed.containsKey("LEFT") && this.keysPressed.get("LEFT") && !this.shootRegistered){
             playerShip.shoot();
             this.shootRegistered = true;
         }
@@ -256,11 +255,17 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if(button == Input.Buttons.LEFT) {
+            this.keysPressed.put("LEFT", true);
+        }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        if(button == Input.Buttons.LEFT) {
+            this.keysPressed.put("LEFT", false);
+        }
         return false;
     }
 
