@@ -28,6 +28,8 @@ public class Level1 extends Level{
         	spawnEnemy(1, batch);
         	System.out.println("enemy");
         }
+
+
         
         batch.end();
     }
