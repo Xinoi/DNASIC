@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -33,6 +34,9 @@ public class Level extends ScreenAdapter implements InputProcessor {
     private HashMap<String, Boolean> keysPressed;
     private boolean shootRegistered;
 
+    SpawnPoint[] spawnPoints1;
+    SpawnPoint[] spawnPoints2;
+
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
@@ -47,6 +51,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
         enemies = new ArrayList<EnemyShip>();
         
         ticker = 0;
+
+        spawnPoints1 = new SpawnPoint[5];
+        spawnPoints2 = new SpawnPoint[5];
+        fillSpawnPoints();
 
         Gdx.input.setInputProcessor(this);
     }
@@ -83,10 +91,13 @@ public class Level extends ScreenAdapter implements InputProcessor {
         }
         if(this.keysPressed.containsKey("A") && this.keysPressed.get("A")){
             moveX -= 1;
+            playerShip.setRotation(90);
         }
         if(this.keysPressed.containsKey("D") && this.keysPressed.get("D")){
             moveX += 1;
+            playerShip.setRotation(-90);
         }
+
         if(this.keysPressed.containsKey("U") && this.keysPressed.get("U")){
             DNASIC.INSTANCE.setScreen(new UpgradeScreen());
         }
@@ -95,6 +106,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         playerShip.move(moveX, moveY, delta);
         playerShip.keepInBounds();
+
+        for(EnemyShip e : enemies) {
+            e.updatePosition();
+            e.update(playerShip.getX(), playerShip.getY());
+        }
 
         if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered){
             playerShip.shoot();
@@ -127,13 +143,40 @@ public class Level extends ScreenAdapter implements InputProcessor {
             }
         }
     }
-
     
-    public void spawnEnemy(int number, float x, float y, SpriteBatch batch) {
-    	switch(number) {
+    public void spawnEnemy(int nummer, SpriteBatch batch) {
+    	switch(nummer) {
+
     	case 1:
-    		enemies.add(new Enemy1(x, y, batch));
+    		enemies.add(new Enemy1(getFreeSpawnPoint(), batch));
     	}
+    }
+
+    public SpawnPoint getFreeSpawnPoint() {
+
+        //search for a free spawnPoint
+        for (SpawnPoint p : spawnPoints1) {
+            if (p.isFree) {
+                p.use();
+                return p;
+            }
+        }
+        for (SpawnPoint p : spawnPoints2) {
+            if (p.isFree) {
+                p.use();
+                return p;
+            }
+        }
+        return spawnPoints1[3];
+    }
+
+    public void fillSpawnPoints() {
+        for (int i = 0; i < spawnPoints1.length; i++) {
+            spawnPoints1[i] = new SpawnPoint(800, Gdx.graphics.getHeight() / 6 * (i + 1));
+        }
+        for (int i = 0; i < spawnPoints2.length; i++) {
+            spawnPoints2[i] = new SpawnPoint(600, Gdx.graphics.getHeight() / 6 * (i + 1));
+        }
     }
 
     @Override

@@ -6,15 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import de.jjj.dnasic.Bullet;
-
-import de.jjj.dnasic.ships.Enemy1;
-import de.jjj.dnasic.ships.EnemyShip;
 
 public class Level1 extends Level{
 
     private SpriteBatch batch;
-
 
     public Level1() {
         super(new Sprite(new Texture(Gdx.files.internal("Images/Background/Background_1.jpg"))));
@@ -29,8 +24,8 @@ public class Level1 extends Level{
         System.out.println(ticker);
         batch.begin();
         
-        if(ticker >= 5 && super.enemies.size() < 1) {
-        	spawnEnemy(1, 500, 300, batch);
+        if(ticker >= 3 && super.enemies.size() < 7) {
+        	spawnEnemy(1, batch);
         	System.out.println("enemy");
         }
         
@@ -39,13 +34,13 @@ public class Level1 extends Level{
 
     @Override
     public void hide() {
-
+        super.hide();
     }
 
     @Override
     public void dispose() {
     	batch.dispose();
-    	this.dispose();
+    	super.dispose();
     }
     
 

@@ -99,6 +99,7 @@ public class DNASIC extends Game {
     @Override
     public void dispose() {
         super.dispose();
+        System.exit(0);
     }
 
     @Override

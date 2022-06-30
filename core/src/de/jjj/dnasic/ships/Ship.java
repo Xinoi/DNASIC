@@ -4,14 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import de.jjj.dnasic.Bullet;
+import de.jjj.dnasic.screens.level.SpawnPoint;
 import de.jjj.dnasic.weapons.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ship extends Sprite {
-    private float x;
-    private float y;
+    protected float x;
+    protected float y;
 
     private float speed;
 
@@ -32,12 +33,30 @@ public class Ship extends Sprite {
         super.setPosition(x, y);
     }
 
+    public Ship(TextureRegion texture, SpawnPoint p, float speed, Weapon[] weapons) {
+        super(texture);
+
+        this.x = p.getX();
+        this.y = p.getY();
+
+        this.speed = speed;
+
+        this.weapons = weapons;
+        this.bullets = new ArrayList<>();
+
+        super.setPosition(x, y);
+    }
+
     @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
 
         this.x = x;
         this.y = y;
+    }
+
+    public void updatePosition() {
+        this.setPosition(this.x, this.y);
     }
 
     public float getX(){
@@ -89,7 +108,11 @@ public class Ship extends Sprite {
     }
 
     public void shoot(){
-        bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage()));
+        if(this.getRotation() == -90) {
+            bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage()));
+        } else {
+            bullets.add(new Bullet(this.x, this.y, -this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage()));
+        }
     }
 
     public List<Bullet> getBullets(){
