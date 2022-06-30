@@ -11,7 +11,9 @@ public class Bullet extends Sprite {
     private float x;
     private float y;
 
-    public Bullet(float x, float y, float speed_x){
+    private int damage;
+
+    public Bullet(float x, float y, float speed_x, int damage){
         super(new Texture(Gdx.files.internal("Images/Laser/LaserRot.png")));
 
         this.speed_x = speed_x;
@@ -19,6 +21,8 @@ public class Bullet extends Sprite {
 
         this.x = x;
         this.y = y;
+
+        this.damage = damage;
 
         super.setPosition(this.x, this.y);
         super.setSize(25,4);
@@ -29,6 +33,10 @@ public class Bullet extends Sprite {
         this.y += dy;
 
         super.setPosition(x, y);
+    }
+
+    public int getDamage(){
+        return this.damage;
     }
 
     public void update(float delta){

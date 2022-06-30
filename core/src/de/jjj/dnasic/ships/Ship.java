@@ -89,7 +89,7 @@ public class Ship extends Sprite {
     }
 
     public void shoot(){
-        bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed()));
+        bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage()));
     }
 
     public List<Bullet> getBullets(){
@@ -98,5 +98,9 @@ public class Ship extends Sprite {
 
     public void death(){
         System.out.println("Ship was destroyed");
+    }
+
+    public void removeBullet(Bullet b){
+        this.bullets.remove(b);
     }
 }
