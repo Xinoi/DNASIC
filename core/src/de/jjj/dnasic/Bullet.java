@@ -3,6 +3,7 @@ package de.jjj.dnasic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 
 public class Bullet extends Sprite {
     private float speed_x;
@@ -13,11 +14,12 @@ public class Bullet extends Sprite {
 
     private int damage;
 
-    public Bullet(float x, float y, float speed_x, int damage){
+    public Bullet(float x, float y, float speed, int damage, float rotation){
         super(new Texture(Gdx.files.internal("Images/Laser/LaserRot.png")));
 
-        this.speed_x = speed_x;
-        this.speed_y = 0;
+        this.speed_x = speed * MathUtils.cosDeg(rotation + 90);
+        this.speed_y = speed * MathUtils.sinDeg(rotation + 90);
+        this.setRotation(rotation + 90);
 
         this.x = x;
         this.y = y;

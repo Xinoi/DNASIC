@@ -66,10 +66,14 @@ public class Level extends ScreenAdapter implements InputProcessor {
             if(e.getAlive()) {
                 e.draw(batch);
             }
+            for(Bullet b : e.getBullets()){
+                b.draw(batch);
+            }
         }
         for(Bullet b : playerShip.getBullets()){
             b.draw(batch);
         }
+
         playerShip.draw(batch);
         batch.end();
 
@@ -110,6 +114,10 @@ public class Level extends ScreenAdapter implements InputProcessor {
         for(EnemyShip e : enemies) {
             e.updatePosition();
             e.update(playerShip.getX(), playerShip.getY());
+
+            for(Bullet b : e.getBullets()){
+                b.update(delta);
+            }
         }
 
         if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered){
