@@ -11,8 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.sun.org.apache.xml.internal.dtm.ref.dom2dtm.DOM2DTMdefaultNamespaceDeclarationNode;
+import com.badlogic.gdx.utils.TimeUtils;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.screens.UpgradeScreen;
@@ -20,7 +19,6 @@ import de.jjj.dnasic.ships.Enemy1;
 import de.jjj.dnasic.ships.EnemyShip;
 import de.jjj.dnasic.ships.PlayerShip;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,6 +40,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
     SpawnPoint[] spawnPoints1;
     SpawnPoint[] spawnPoints2;
+
+    private long lastHit;
 
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
@@ -65,6 +65,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
         spawnPoints1 = new SpawnPoint[5];
         spawnPoints2 = new SpawnPoint[5];
         fillSpawnPoints();
+
+        this.lastHit = TimeUtils.millis();
 
         Gdx.input.setInputProcessor(this);
     }
@@ -125,7 +127,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         for(EnemyShip e : enemies) {
             if(e.getAlive()) {
-                e.updatePosition();
+                e.update();
                 e.control(playerShip.getX(), playerShip.getY(), ticker);
             }
 
@@ -137,9 +139,14 @@ public class Level extends ScreenAdapter implements InputProcessor {
                     iterator.remove();
                 }
             }
+
+            if(TimeUtils.millis() - this.lastHit > playerShip.getHitCooldown() && Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
+                playerShip.inflictDamage(10);
+                this.lastHit = TimeUtils.millis();
+            }
         }
 
-        if(this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE") && !this.shootRegistered || this.keysPressed.containsKey("LEFT") && this.keysPressed.get("LEFT") && !this.shootRegistered){
+        if((!DNASIC.INSTANCE.getSettings().getMouseControl() && this.keysPressed.containsKey("SPACE") && this.keysPressed.get("SPACE")) || (DNASIC.INSTANCE.getSettings().getMouseControl() && this.keysPressed.containsKey("LEFT") && this.keysPressed.get("LEFT"))){
             playerShip.shoot();
             this.shootRegistered = true;
         }
@@ -157,17 +164,6 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
             if(b.getX() < 0 || b.getX() > Gdx.graphics.getWidth()){
                 iterator.remove();
-            }
-        }
-
-        // check collisions and remove dead enemies
-        for(EnemyShip e : enemies){
-            if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
-                playerShip.inflictDamage(10);
-                System.out.println("player got damage");
-            }
-            if(!e.getAlive()){
-
             }
         }
     }
@@ -285,7 +281,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         return false;
     }
 
-    public static String returncurrentShip(){
+    public static String getCurrentShip(){
         return currentShip;
     }
 

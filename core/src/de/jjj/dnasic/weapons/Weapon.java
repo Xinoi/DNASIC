@@ -3,10 +3,12 @@ package de.jjj.dnasic.weapons;
 public class Weapon {
     private int damage;
     private float bulletSpeed;
+    private float reloadTime;
 
-    public Weapon(int damage, float bulletSpeed){
+    public Weapon(int damage, float bulletSpeed, float reloadTime){
         this.damage = damage;
         this.bulletSpeed = bulletSpeed;
+        this.reloadTime = reloadTime;
     }
 
     public int getDamage(){
@@ -15,5 +17,9 @@ public class Weapon {
 
     public float getBulletSpeed(){
         return this.bulletSpeed;
+    }
+
+    public float getReloadTime(){
+        return this.reloadTime;
     }
 }

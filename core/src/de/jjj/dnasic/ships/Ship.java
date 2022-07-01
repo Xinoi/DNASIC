@@ -3,6 +3,7 @@ package de.jjj.dnasic.ships;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.TimeUtils;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.screens.level.SpawnPoint;
 import de.jjj.dnasic.weapons.Weapon;
@@ -21,6 +22,8 @@ public class Ship extends Sprite {
     private Weapon[] weapons;
     private List<Bullet> bullets;
 
+    private long lastShot;
+
     public Ship(TextureRegion texture, float x, float y, float speed, Weapon[] weapons, int health) {
         super(texture);
 
@@ -35,6 +38,8 @@ public class Ship extends Sprite {
         this.health = health;
 
         super.setPosition(x, y);
+
+        this.lastShot = TimeUtils.millis();
     }
 
     public Ship(TextureRegion texture, SpawnPoint p, float speed, Weapon[] weapons, int health) {
@@ -61,7 +66,7 @@ public class Ship extends Sprite {
         this.y = y;
     }
 
-    public void updatePosition() {
+    public void update() {
         this.setPosition(this.x, this.y);
     }
 
@@ -114,7 +119,10 @@ public class Ship extends Sprite {
     }
 
     public void shoot(){
-        bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage(), this.getRotation()));
+        if(TimeUtils.millis() - this.lastShot > this.weapons[0].getReloadTime()) {
+            bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage(), this.getRotation()));
+            this.lastShot = TimeUtils.millis();
+        }
     }
 
     public List<Bullet> getBullets(){

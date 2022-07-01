@@ -11,7 +11,7 @@ public class Enemy3 extends EnemyShip {
     public Enemy3(SpawnPoint p, SpriteBatch batch) {
         super(new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/NPC_Ship/NPC_Ship.atlas")).findRegion("Ship_3"), p.getX(), p.getY(), 1, 1, 50, new Weapon[2], batch);
 
-        this.setWeapon(0, new Weapon(15, 3));
-        this.setWeapon(1, new Weapon(15, 3));
+        this.setWeapon(0, new Weapon(15, 3, 2000));
+        this.setWeapon(1, new Weapon(15, 3, 2000));
     }
 }
