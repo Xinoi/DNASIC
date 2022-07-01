@@ -121,7 +121,6 @@ public class  LevelScreen extends ScreenAdapter {
     public void dispose() {
         stage.dispose();
         batch.dispose();
-        bgMusic.dispose();
     }
 
 }

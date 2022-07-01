@@ -138,7 +138,7 @@ public class UpgradeScreen extends ScreenAdapter {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                DNASIC.INSTANCE.setScreen(new MenuScreen());
+                DNASIC.INSTANCE.setScreen(DNASIC.INSTANCE.getLastScreen());
             }
         });
 
@@ -191,7 +191,6 @@ public class UpgradeScreen extends ScreenAdapter {
     @Override
     public void dispose(){
         stage.dispose();
-        bgMusic.dispose();
         batch.dispose();
     }
     @Override

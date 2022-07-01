@@ -155,7 +155,6 @@ public class MenuScreen extends ScreenAdapter {
     public void dispose() {
         stage.dispose();
         batch.dispose();
-        bgMusic.dispose();
     }
 
     private void createTitle(){

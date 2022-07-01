@@ -122,7 +122,6 @@ public class SettingsScreen extends ScreenAdapter{
 	@Override
 	public void dispose() {
 		stage.dispose();
-		bgMusic.dispose();
 	}
 
 	private String getMbuttonText() {

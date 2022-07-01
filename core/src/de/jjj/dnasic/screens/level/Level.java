@@ -289,7 +289,6 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public void hide() {
         bgMusic.pause();
         DNASIC.INSTANCE.setLevelMusic(bgMusic);
-        this.dispose();
     }
 
     @Override
