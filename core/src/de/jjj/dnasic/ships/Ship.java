@@ -9,8 +9,6 @@ import de.jjj.dnasic.screens.level.SpawnPoint;
 import de.jjj.dnasic.weapons.Weapon;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Ship extends Sprite {
@@ -68,7 +66,7 @@ public class Ship extends Sprite {
         this.y = y;
     }
 
-    public void updatePosition() {
+    public void update() {
         this.setPosition(this.x, this.y);
     }
 

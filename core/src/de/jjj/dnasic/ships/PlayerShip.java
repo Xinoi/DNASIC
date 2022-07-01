@@ -8,10 +8,14 @@ import de.jjj.dnasic.screens.DeathScreen;
 import de.jjj.dnasic.weapons.Weapon;
 
 public class PlayerShip extends Ship {
+    private long hitCooldown;
   
     public PlayerShip(TextureRegion texture, float x, float y, float speed) {
         super(texture, x, y, speed, new Weapon[]{new Weapon(20, 700, 300)}, 100);
         super.scale(1);
+
+        // set cooldown after enemy hit (in ms)
+        this.hitCooldown = 1000;
     }
 
     @Override
@@ -32,4 +36,7 @@ public class PlayerShip extends Ship {
         this.setRotation(angleToPlayer + 90);
     }
 
+    public long getHitCooldown(){
+        return this.hitCooldown;
+    }
 }

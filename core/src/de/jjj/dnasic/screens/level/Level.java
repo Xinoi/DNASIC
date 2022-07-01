@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.utils.TimeUtils;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.screens.UpgradeScreen;
@@ -40,6 +41,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
     SpawnPoint[] spawnPoints1;
     SpawnPoint[] spawnPoints2;
 
+    private long lastHit;
+
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
@@ -62,6 +65,8 @@ public class Level extends ScreenAdapter implements InputProcessor {
         spawnPoints1 = new SpawnPoint[5];
         spawnPoints2 = new SpawnPoint[5];
         fillSpawnPoints();
+
+        this.lastHit = TimeUtils.millis();
 
         Gdx.input.setInputProcessor(this);
     }
@@ -122,7 +127,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
         for(EnemyShip e : enemies) {
             if(e.getAlive()) {
-                e.updatePosition();
+                e.update();
                 e.control(playerShip.getX(), playerShip.getY(), ticker);
             }
 
@@ -133,6 +138,11 @@ public class Level extends ScreenAdapter implements InputProcessor {
                     playerShip.inflictDamage(b.getDamage());
                     iterator.remove();
                 }
+            }
+
+            if(TimeUtils.millis() - this.lastHit > playerShip.getHitCooldown() && Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
+                playerShip.inflictDamage(10);
+                this.lastHit = TimeUtils.millis();
             }
         }
 
@@ -154,17 +164,6 @@ public class Level extends ScreenAdapter implements InputProcessor {
 
             if(b.getX() < 0 || b.getX() > Gdx.graphics.getWidth()){
                 iterator.remove();
-            }
-        }
-
-        // check collisions and remove dead enemies
-        for(EnemyShip e : enemies){
-            if(Intersector.overlaps(e.getBoundingRectangle(), playerShip.getBoundingRectangle()) && e.getAlive()){
-                playerShip.inflictDamage(10);
-                System.out.println("player got damage");
-            }
-            if(!e.getAlive()){
-
             }
         }
     }
