@@ -43,7 +43,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
     public Level(Sprite BackgroundSprite) {
         background = new Sprite(BackgroundSprite);
         playerAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Player_Ship/Player_Ship.atlas"));
-        playerShip = new PlayerShip(playerAtlas.findRegion(currentShip),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion(currentShip).getRegionHeight(), 700f);
+        playerShip = new PlayerShip(playerAtlas.findRegion(currentShip),300 , Gdx.graphics.getHeight() / 2 - playerAtlas.findRegion(currentShip).getRegionHeight(), 500f);
         playerShip.rotate(-90);
 
         healthImage = new Sprite(new Texture(Gdx.files.internal("Images/Icons/heart.png")));
