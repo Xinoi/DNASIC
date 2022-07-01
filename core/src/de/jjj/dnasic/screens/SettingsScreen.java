@@ -26,6 +26,8 @@ public class SettingsScreen extends ScreenAdapter{
 	private Label musicL;
 	private Label title;
 	private TextButton musicB;
+	private Label mouseControlL;
+	private TextButton mouseControlB;
 
 	private Music bgMusic;
 	private Sound clickSound;
@@ -41,12 +43,20 @@ public class SettingsScreen extends ScreenAdapter{
 		title = new Label("Settings", DNASIC.INSTANCE.getLabelStyle());
 
 		musicL = new Label("Music:", DNASIC.INSTANCE.getLabelStyle());
-
 		musicB = new TextButton(getMbuttonText(), DNASIC.INSTANCE.getButtonStyle());
 		musicB.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				musicB.setText(setMbuttonText());
+			}
+		});
+
+		mouseControlL = new Label("Mouse Controls:", DNASIC.INSTANCE.getLabelStyle());
+		mouseControlB = new TextButton(getControlButtonText(), DNASIC.INSTANCE.getButtonStyle());
+		mouseControlB.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				mouseControlB.setText(setControlButtonText());
 			}
 		});
 
@@ -65,6 +75,9 @@ public class SettingsScreen extends ScreenAdapter{
 		table.row();
 		table.add(musicL).spaceRight(20);
 		table.add(musicB).pad(10);
+		table.row();
+		table.add(mouseControlL).spaceRight(20);
+		table.add(mouseControlB).pad(10);
 
 		// background Music
 		bgMusic = DNASIC.INSTANCE.getMenuMusic();
@@ -130,4 +143,21 @@ public class SettingsScreen extends ScreenAdapter{
 		}
 	}
 
+	private String getControlButtonText(){
+		if(DNASIC.INSTANCE.getSettings().getMouseControl()){
+			return "  On  ";
+		} else {
+			return "  Off  ";
+		}
+	}
+
+	private String setControlButtonText(){
+		if(DNASIC.INSTANCE.getSettings().getMouseControl()){
+			DNASIC.INSTANCE.getSettings().setMouseControl(false);
+			return "  Off  ";
+		} else {
+			DNASIC.INSTANCE.getSettings().setMouseControl(true);
+			return "  On  ";
+		}
+	}
 }

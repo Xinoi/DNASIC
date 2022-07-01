@@ -11,8 +11,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.sun.org.apache.xml.internal.dtm.ref.dom2dtm.DOM2DTMdefaultNamespaceDeclarationNode;
 import de.jjj.dnasic.Bullet;
 import de.jjj.dnasic.DNASIC;
 import de.jjj.dnasic.screens.UpgradeScreen;
@@ -20,7 +18,6 @@ import de.jjj.dnasic.ships.Enemy1;
 import de.jjj.dnasic.ships.EnemyShip;
 import de.jjj.dnasic.ships.PlayerShip;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -285,7 +282,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         return false;
     }
 
-    public static String returncurrentShip(){
+    public static String getCurrentShip(){
         return currentShip;
     }
 
