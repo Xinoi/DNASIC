@@ -6,10 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -43,8 +40,14 @@ public class UpgradeScreen extends ScreenAdapter {
     private Button Rahmen3;
     private TextButton.TextButtonStyle bStyle;
     private TextButton.TextButtonStyle bStyle1;
+    private TextButton.TextButtonStyle bStyle2;
+    private TextButton.TextButtonStyle bStyle3;
     private TextButton backButton;
+    private BitmapFont armorT;
+    private BitmapFont damageT;
+    private int armor = 10;
     private int currentTriebwerk = 1;
+    private int Damage = 10;
     private boolean TribButtonPressed;
     private boolean hpButtonPressed;
     private boolean gunButtonPressed;
@@ -77,6 +80,10 @@ public class UpgradeScreen extends ScreenAdapter {
         Ship.setY(650);
         Ship.rotateBy(-90);
         Ship.sizeBy(550);
+
+        //Bitmap
+        armorT = DNASIC.INSTANCE.getFont();
+        damageT = DNASIC.INSTANCE.getFont();
 
         //Runde Buttons
         triebwerkeB = new TextButton("", bStyle);
@@ -116,6 +123,8 @@ public class UpgradeScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 clickSound.play();
+                repaintStage();
+                setStageArmor();
                 TribButtonPressed = false;
                 hpButtonPressed = true;
                 gunButtonPressed = false;
@@ -126,6 +135,8 @@ public class UpgradeScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 clickSound.play();
+                repaintStage();
+                setStageGun();
                 TribButtonPressed = false;
                 hpButtonPressed = false;
                 gunButtonPressed = true;
@@ -168,6 +179,15 @@ public class UpgradeScreen extends ScreenAdapter {
 
         stage.act(delta);
         stage.draw();
+
+        batch.begin();
+        if(hpButtonPressed == true){
+            armorT.draw(batch,String.valueOf(armor),1015, 550);
+        }
+        if(gunButtonPressed == true){
+            damageT.draw(batch,String.valueOf(Damage),1015, 550);
+        }
+        batch.end();
     }
     private void createButtonStyles() {
         bStyle = new TextButton.TextButtonStyle();
@@ -187,6 +207,22 @@ public class UpgradeScreen extends ScreenAdapter {
         bStyle1.fontColor = Color.GRAY;
         bStyle1.up = new TextureRegionDrawable(buttonAtlas.findRegion("UpgradeFenster_up"));
         bStyle1.down = new TextureRegionDrawable(buttonAtlas.findRegion("UpgradeFenster_down"));
+
+        bStyle2 = new TextButton.TextButtonStyle();
+        buttonAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
+        bStyle2 = new TextButton.TextButtonStyle();
+        bStyle2.font = DNASIC.INSTANCE.getFont();
+        bStyle2.fontColor = Color.GRAY;
+        bStyle2.up = new TextureRegionDrawable(buttonAtlas.findRegion("Pfeil_up"));
+        bStyle2.down = new TextureRegionDrawable(buttonAtlas.findRegion("Pfeil_down"));
+
+        bStyle3 = new TextButton.TextButtonStyle();
+        buttonAtlas = new TextureAtlas(Gdx.files.internal("TextureAtlas/packed/Button/buttons.atlas"));
+        bStyle3 = new TextButton.TextButtonStyle();
+        bStyle3.font = DNASIC.INSTANCE.getFont();
+        bStyle3.fontColor = Color.GRAY;
+        bStyle3.up = new TextureRegionDrawable(buttonAtlas.findRegion("Pfeil__up"));
+        bStyle3.down = new TextureRegionDrawable(buttonAtlas.findRegion("Pfeil__down"));
     }
     @Override
     public void dispose(){
@@ -272,4 +308,91 @@ public class UpgradeScreen extends ScreenAdapter {
         stage.addActor(Rahmen3);
 
     }
+
+    public void setStageArmor(){
+        Actor Icon = new Image(new Texture(Gdx.files.internal("Images/Icons/Armor.png")));
+        Icon.setPosition(980,480);
+        Icon.setSize(120,123);
+
+        Actor PfeilL = new TextButton("",bStyle2);
+        PfeilL.setBounds(920,400,61,61);
+        Actor PfeilR = new TextButton("",bStyle3);
+        PfeilR.setBounds(1100,400,61,61);
+
+        PfeilL.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+               if(armor > 0){
+                   armor = armor - 10;
+               }
+            }
+        });
+        PfeilR.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(armor < 100){
+                    armor = armor + 10;
+                }
+            }
+        });
+
+        stage.addActor(Icon);
+        stage.addActor(PfeilL);
+        stage.addActor(PfeilR);
+
+    }
+    public void setStageGun(){
+        Actor Gun = new Image(new Texture(Gdx.files.internal("Images/Laser/Gun.png")));
+        Gun.setPosition(925,480);
+        Gun.setSize(240,41);
+
+        Actor PfeilL = new TextButton("",bStyle2);
+        PfeilL.setBounds(920,400,61,61);
+        Actor PfeilR = new TextButton("",bStyle3);
+        PfeilR.setBounds(1100,400,61,61);
+
+        PfeilL.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(Damage > 0){
+                    Damage = Damage - 10;
+                }
+            }
+        });
+        PfeilR.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(Damage < 100){
+                    Damage = Damage + 10;
+                }
+            }
+        });
+
+        stage.addActor(Gun);
+        stage.addActor(PfeilL);
+        stage.addActor(PfeilR);
+
+    }
+    public void repaintStage(){
+        stage.clear();
+        Actor backR = new Image(new Texture(Gdx.files.internal("TextureAtlas/Raw/Button/FensterUpgrade.png")));
+        backR.setX(892);
+
+        //set the Ship
+        ShipP = new TextureAtlas("TextureAtlas/packed/Player_Ship/Player_Ship.atlas");
+        Actor Ship = new Image(ShipP.findRegion(currentShip));
+        Ship.setX(200);
+        Ship.setY(650);
+        Ship.rotateBy(-90);
+        Ship.sizeBy(550);
+
+        stage.addActor(backR);
+        stage.addActor(Ship);
+        stage.addActor(backButton);
+        stage.addActor(triebwerkeB);
+        stage.addActor(hpB);
+        stage.addActor(gunB);
+
+    }
+
 }
