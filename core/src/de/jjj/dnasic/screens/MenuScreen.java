@@ -41,6 +41,7 @@ public class MenuScreen extends ScreenAdapter {
     private TextButton startB;
     private TextButton settingsB;
     private TextButton exitButton;
+    private TextButton upgradeScreenButton;
 
     private Sound clickSound;
 
@@ -80,6 +81,12 @@ public class MenuScreen extends ScreenAdapter {
                 DNASIC.INSTANCE.setScreen(new SettingsScreen());
             }
         });
+        upgradeScreenButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                DNASIC.INSTANCE.setScreen(new UpgradeScreen());
+            }
+        });
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -104,6 +111,14 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
 
+        upgradeScreenButton.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                clickSound.play();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
         // background Music
         bgMusic = DNASIC.INSTANCE.getMenuMusic();
 
@@ -111,9 +126,12 @@ public class MenuScreen extends ScreenAdapter {
         table.row();
         table.add(startB).space(50).size(startButtonWidth, buttonHeigth);
         table.row();
+        table.add(upgradeScreenButton).size(200, 80);
+        table.row();
         table.add(settingsB).space(50).size(settingsButtonWidth, buttonHeigth);
         table.row();
         table.add(exitButton).space(50).size(exitButtonWidth, buttonHeigth);
+
 
         // add things to stage
         stage.addActor(table);
@@ -167,6 +185,7 @@ public class MenuScreen extends ScreenAdapter {
         startB = new TextButton("Play", DNASIC.INSTANCE.getButtonStyle());
         settingsB = new TextButton("Settings", DNASIC.INSTANCE.getButtonStyle());
         exitButton = new TextButton("Exit", DNASIC.INSTANCE.getButtonStyle());
+        upgradeScreenButton = new TextButton("Upgrades", DNASIC.INSTANCE.getButtonStyle());
     }
 
 }
