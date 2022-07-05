@@ -57,6 +57,7 @@ public class Level extends ScreenAdapter implements InputProcessor {
         this.shootRegistered = false;
 
         bgMusic = DNASIC.INSTANCE.getLevelMusic();
+        bgMusic.stop();
         
         enemies = new ArrayList<EnemyShip>();
         
