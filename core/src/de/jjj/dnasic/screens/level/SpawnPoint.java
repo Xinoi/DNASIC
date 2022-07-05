@@ -19,9 +19,6 @@ public class SpawnPoint{
         isFree = false;
         final Timer timer = new Timer();
 
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
@@ -29,9 +26,6 @@ public class SpawnPoint{
                     }
                 }, 1000);
             }
-        };
-
-    }
 
     public boolean isFree() {
         return this.isFree;
