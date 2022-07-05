@@ -76,8 +76,7 @@ public class UpgradeScreen extends ScreenAdapter {
         //set the Ship
         ShipP = new TextureAtlas("TextureAtlas/packed/Player_Ship/Player_Ship.atlas");
         Actor Ship = new Image(ShipP.findRegion(currentShip));
-        Ship.setX(200);
-        Ship.setY(650);
+        Ship.setPosition(200, 650);
         Ship.rotateBy(-90);
         Ship.sizeBy(550);
 
@@ -149,7 +148,7 @@ public class UpgradeScreen extends ScreenAdapter {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                DNASIC.INSTANCE.setScreen(DNASIC.INSTANCE.getLastScreen());
+                DNASIC.INSTANCE.setScreen(new MenuScreen());
             }
         });
 
@@ -322,7 +321,7 @@ public class UpgradeScreen extends ScreenAdapter {
         PfeilL.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-               if(armor > 0){
+               if(armor > 10){
                    armor = armor - 10;
                }
             }
@@ -354,7 +353,7 @@ public class UpgradeScreen extends ScreenAdapter {
         PfeilL.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Damage > 0){
+                if(Damage > 10){
                     Damage = Damage - 10;
                 }
             }
@@ -381,8 +380,7 @@ public class UpgradeScreen extends ScreenAdapter {
         //set the Ship
         ShipP = new TextureAtlas("TextureAtlas/packed/Player_Ship/Player_Ship.atlas");
         Actor Ship = new Image(ShipP.findRegion(currentShip));
-        Ship.setX(200);
-        Ship.setY(650);
+        Ship.setPosition(200, 650);
         Ship.rotateBy(-90);
         Ship.sizeBy(550);
 
