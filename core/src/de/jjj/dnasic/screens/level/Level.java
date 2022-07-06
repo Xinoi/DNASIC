@@ -115,10 +115,6 @@ public class Level extends ScreenAdapter implements InputProcessor {
             moveX += 1;
             playerShip.setRotation(-90);
         }
-
-        if(this.keysPressed.containsKey("U") && this.keysPressed.get("U")){
-            DNASIC.INSTANCE.setScreen(new UpgradeScreen());
-        }
         ticker = ticker + delta;
 
         playerShip.move(moveX, moveY, delta);

@@ -1,6 +1,7 @@
 package de.jjj.dnasic.ships;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -19,6 +20,7 @@ public class Ship extends Sprite {
 
     private float speed;
 
+    Sound shootSound;
     private Weapon[] weapons;
     private List<Bullet> bullets;
 
@@ -31,6 +33,8 @@ public class Ship extends Sprite {
         this.y = y;
 
         this.speed = speed;
+
+        shootSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Shot.wav"));
 
         this.weapons = weapons;
         this.bullets = new ArrayList<>();
@@ -121,6 +125,7 @@ public class Ship extends Sprite {
     public void shoot(){
         if(TimeUtils.millis() - this.lastShot > this.weapons[0].getReloadTime()) {
             bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage(), this.getRotation()));
+            shootSound.play();
             this.lastShot = TimeUtils.millis();
         }
     }

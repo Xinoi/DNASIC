@@ -1,6 +1,7 @@
 package de.jjj.dnasic.ships;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import de.jjj.dnasic.DNASIC;
@@ -9,17 +10,20 @@ import de.jjj.dnasic.weapons.Weapon;
 
 public class PlayerShip extends Ship {
     private long hitCooldown;
+    Sound dieSound;
   
     public PlayerShip(TextureRegion texture, float x, float y, float speed) {
         super(texture, x, y, speed, new Weapon[]{new Weapon(20, 700, 300)}, 100);
         super.scale(1);
 
+        dieSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Death.mp3"));
         // set cooldown after enemy hit (in ms)
         this.hitCooldown = 1000;
     }
 
     @Override
     public void death(){
+        dieSound.play();
         DNASIC.INSTANCE.setScreen(new DeathScreen());
     }
 
