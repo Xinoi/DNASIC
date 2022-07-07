@@ -1,0 +1,101 @@
+
+Explosion.png
+size: 206, 36
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Explosion
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  split: 0, 7, 0, 32
+  pad: 6, 7, 6, 11
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
+Explosion
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  split: 6, 7, 6, 11
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+Explosion
+  rotate: false
+  xy: 36, 2
+  size: 32, 32
+  split: 10, 11, 8, 13
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+Explosion
+  rotate: false
+  xy: 36, 2
+  size: 32, 32
+  split: 10, 11, 8, 13
+  pad: 10, 11, -1, -1
+  orig: 32, 32
+  offset: 0, 0
+  index: 11
+Explosion
+  rotate: false
+  xy: 70, 2
+  size: 32, 32
+  split: 0, 32, 0, 1
+  pad: 1, 0, -1, -1
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
+Explosion
+  rotate: false
+  xy: 104, 2
+  size: 32, 32
+  split: 0, 0, 0, 0
+  pad: 2, 4, 0, 6
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
+Explosion
+  rotate: false
+  xy: 104, 2
+  size: 32, 32
+  split: 2, 4, 0, 6
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+Explosion
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  split: 0, 0, 0, 1
+  pad: 1, 0, 0, 0
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
+Explosion
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  split: 0, 32, 0, 1
+  pad: 1, 0, -1, -1
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
+Explosion
+  rotate: false
+  xy: 172, 2
+  size: 32, 32
+  split: 7, 9, 6, 13
+  pad: 7, 9, -1, -1
+  orig: 32, 32
+  offset: 0, 0
+  index: 10
+Explosion
+  rotate: false
+  xy: 172, 2
+  size: 32, 32
+  split: 8, 9, 6, 13
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
