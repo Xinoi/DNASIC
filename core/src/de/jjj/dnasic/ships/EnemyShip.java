@@ -25,7 +25,7 @@ public class EnemyShip extends Ship {
     private Random r = new Random();
 
     public EnemyShip(TextureRegion texture, float x, float y, float speed, float turnSpeed, int health, Weapon[] weapons, SpriteBatch batch){
-        super(texture, x, y, speed, weapons, health);
+        super(texture, x, y, speed, weapons, health, "Images/Laser/LaserRot.png");
         this.x = x;
         this.y = y;
 

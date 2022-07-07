@@ -14,8 +14,8 @@ public class Bullet extends Sprite {
 
     private int damage;
 
-    public Bullet(float x, float y, float speed, int damage, float rotation){
-        super(new Texture(Gdx.files.internal("Images/Laser/LaserRot.png")));
+    public Bullet(float x, float y, float speed, int damage, float rotation, String texture){
+        super(new Texture(Gdx.files.internal(texture)));
 
         this.speed_x = speed * MathUtils.cosDeg(rotation + 90);
         this.speed_y = speed * MathUtils.sinDeg(rotation + 90);
