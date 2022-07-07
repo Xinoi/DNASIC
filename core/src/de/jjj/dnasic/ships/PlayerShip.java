@@ -13,7 +13,7 @@ public class PlayerShip extends Ship {
     Sound dieSound;
   
     public PlayerShip(TextureRegion texture, float x, float y, float speed) {
-        super(texture, x, y, speed, new Weapon[]{new Weapon(20, 700, 300)}, 100);
+        super(texture, x, y, speed, new Weapon[]{new Weapon(DNASIC.INSTANCE.getGameData().getShipDamage(), 700, 300)}, 100);
         super.scale(1);
 
         dieSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Death.mp3"));

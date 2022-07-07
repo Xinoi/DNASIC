@@ -1,7 +1,5 @@
 package de.jjj.dnasic;
 
-import java.util.HashMap;
-
 public class GameData {
     private int highscore;
     private int shipEngine = 1;
