@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import de.jjj.dnasic.DNASIC;
+import de.jjj.dnasic.GameData;
 import de.jjj.dnasic.screens.level.Level;
 
 public class UpgradeScreen extends ScreenAdapter {
@@ -45,15 +46,21 @@ public class UpgradeScreen extends ScreenAdapter {
     private TextButton backButton;
     private BitmapFont armorT;
     private BitmapFont damageT;
-    private int armor = 10;
-    private int currentTriebwerk = 1;
-    private int Damage = 10;
+    private int armor;
+    private int currentTriebwerk;
+    private int Damage;
     private boolean TribButtonPressed;
     private boolean hpButtonPressed;
     private boolean gunButtonPressed;
     private final Sound clickSound;
 
     public UpgradeScreen(){
+        GameData d = DNASIC.INSTANCE.getGameData();
+        this.armor = d.getShipArmor();
+        this.currentTriebwerk = d.getShipEngine();
+        this.Damage = d.getShipDamage();
+        System.out.println(this.armor);
+
         currentShip = Level.getCurrentShip();
         createButtonStyles();
 
@@ -148,6 +155,12 @@ public class UpgradeScreen extends ScreenAdapter {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameData d = DNASIC.INSTANCE.getGameData();
+                d.setShipArmor(armor);
+                d.setShipDamage(Damage);
+                d.setShipEngine(currentTriebwerk);
+                DNASIC.INSTANCE.setGameData(d);
+
                 DNASIC.INSTANCE.setScreen(new MenuScreen());
             }
         });

@@ -25,14 +25,16 @@ public class Ship extends Sprite {
     private List<Bullet> bullets;
 
     private long lastShot;
+    private String bulletTexture;
 
-    public Ship(TextureRegion texture, float x, float y, float speed, Weapon[] weapons, int health) {
+    public Ship(TextureRegion texture, float x, float y, float speed, Weapon[] weapons, int health, String bulletTexture) {
         super(texture);
 
         this.x = x;
         this.y = y;
 
         this.speed = speed;
+        this.bulletTexture = bulletTexture;
 
         shootSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Shot.wav"));
 
@@ -124,7 +126,7 @@ public class Ship extends Sprite {
 
     public void shoot(){
         if(TimeUtils.millis() - this.lastShot > this.weapons[0].getReloadTime()) {
-            bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage(), this.getRotation()));
+            bullets.add(new Bullet(this.x, this.y, this.weapons[0].getBulletSpeed(), this.weapons[0].getDamage(), this.getRotation(), this.bulletTexture));
             shootSound.play();
             this.lastShot = TimeUtils.millis();
         }

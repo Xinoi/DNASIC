@@ -215,4 +215,12 @@ public class DNASIC extends Game {
     public Screen getLastScreen(){
         return this.lastScreen;
     }
+
+    public GameData getGameData(){
+        return this.data;
+    }
+
+    public void setGameData(GameData d){
+        this.data = d;
+    }
 }

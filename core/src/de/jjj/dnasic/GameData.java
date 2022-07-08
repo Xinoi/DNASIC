@@ -1,12 +1,10 @@
 package de.jjj.dnasic;
 
-import java.util.HashMap;
-
 public class GameData {
     private int highscore;
-    private HashMap<String, Object> shipStats = new HashMap<String, Object>(){{
-        put("speed", 1f);
-    }};
+    private int shipEngine = 1;
+    private int shipArmor = 10;
+    private int shipDamage = 10;
 
     public int getHighscore() {
         return this.highscore;
@@ -16,11 +14,27 @@ public class GameData {
         this.highscore = highscore;
     }
 
-    public float getShipSpeed(){
-        return (float) this.shipStats.get("speed");
+    public int getShipEngine(){
+        return this.shipEngine;
     }
 
-    public void setShipSpeed(float speed){
-        this.shipStats.put("speed", speed);
+    public void setShipEngine(int engine){
+        this.shipEngine = engine;
+    }
+
+    public int getShipArmor(){
+        return this.shipArmor;
+    }
+
+    public void setShipArmor(int armor){
+        this.shipArmor = armor;
+    }
+
+    public int getShipDamage(){
+        return this.shipDamage;
+    }
+
+    public void setShipDamage(int damage){
+        this.shipDamage = damage;
     }
 }
