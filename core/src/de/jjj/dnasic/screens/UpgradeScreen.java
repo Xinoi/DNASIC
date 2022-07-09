@@ -45,10 +45,10 @@ public class UpgradeScreen extends ScreenAdapter {
     private TextButton.TextButtonStyle bStyle3;
     private TextButton backButton;
     private BitmapFont armorT;
-    private BitmapFont damageT;
+    private BitmapFont reloadT;
     private int armor;
     private int currentTriebwerk;
-    private int Damage;
+    private int reload;
     private boolean TribButtonPressed;
     private boolean hpButtonPressed;
     private boolean gunButtonPressed;
@@ -58,7 +58,7 @@ public class UpgradeScreen extends ScreenAdapter {
         GameData d = DNASIC.INSTANCE.getGameData();
         this.armor = d.getShipArmor();
         this.currentTriebwerk = d.getShipEngine();
-        this.Damage = d.getShipDamage();
+        this.reload = d.getShipReload();
         System.out.println(this.armor);
 
         currentShip = Level.getCurrentShip();
@@ -89,7 +89,7 @@ public class UpgradeScreen extends ScreenAdapter {
 
         //Bitmap
         armorT = DNASIC.INSTANCE.getFont();
-        damageT = DNASIC.INSTANCE.getFont();
+        reloadT = DNASIC.INSTANCE.getFont();
 
         //Runde Buttons
         triebwerkeB = new TextButton("", bStyle);
@@ -157,7 +157,7 @@ public class UpgradeScreen extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 GameData d = DNASIC.INSTANCE.getGameData();
                 d.setShipArmor(armor);
-                d.setShipDamage(Damage);
+                d.setShipReload(reload);
                 d.setShipEngine(currentTriebwerk);
                 DNASIC.INSTANCE.setGameData(d);
 
@@ -197,7 +197,7 @@ public class UpgradeScreen extends ScreenAdapter {
             armorT.draw(batch,String.valueOf(armor),1015, 550);
         }
         if(gunButtonPressed == true){
-            damageT.draw(batch,String.valueOf(Damage),1015, 550);
+            reloadT.draw(batch,String.valueOf(reload),1015, 550);
         }
         batch.end();
     }
@@ -366,16 +366,16 @@ public class UpgradeScreen extends ScreenAdapter {
         PfeilL.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Damage > 0){
-                    Damage = Damage - 10;
+                if(reload > 0){
+                    reload = reload - 10;
                 }
             }
         });
         PfeilR.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Damage < 100){
-                    Damage = Damage + 10;
+                if(reload < 100){
+                    reload = reload + 10;
                 }
             }
         });

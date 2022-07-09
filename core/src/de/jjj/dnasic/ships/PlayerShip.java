@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 public class PlayerShip extends Ship {
     private long hitCooldown;
-    private float reloadUpgrade = DNASIC.INSTANCE.getGameData().getShipDamage();
+    private float reloadUpgrade = DNASIC.INSTANCE.getGameData().getShipReload();
     Sound dieSound;
   
     public PlayerShip(TextureRegion texture, float x, float y, float speed) {

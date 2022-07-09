@@ -4,7 +4,7 @@ public class GameData {
     private int highscore;
     private int shipEngine = 1;
     private int shipArmor = 0;
-    private int shipDamage = 0;
+    private int shipReload = 0;
 
     public int getHighscore() {
         return this.highscore;
@@ -30,11 +30,11 @@ public class GameData {
         this.shipArmor = armor;
     }
 
-    public int getShipDamage(){
-        return this.shipDamage;
+    public int getShipReload(){
+        return this.shipReload;
     }
 
-    public void setShipDamage(int damage){
-        this.shipDamage = damage;
+    public void setShipReload(int damage){
+        this.shipReload = damage;
     }
 }
