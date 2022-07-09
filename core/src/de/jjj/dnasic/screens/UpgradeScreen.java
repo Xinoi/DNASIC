@@ -334,7 +334,7 @@ public class UpgradeScreen extends ScreenAdapter {
         PfeilL.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-               if(armor > 10){
+               if(armor > 0){
                    armor = armor - 10;
                }
             }
@@ -366,7 +366,7 @@ public class UpgradeScreen extends ScreenAdapter {
         PfeilL.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Damage > 10){
+                if(Damage > 0){
                     Damage = Damage - 10;
                 }
             }

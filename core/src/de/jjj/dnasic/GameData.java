@@ -3,8 +3,8 @@ package de.jjj.dnasic;
 public class GameData {
     private int highscore;
     private int shipEngine = 1;
-    private int shipArmor = 10;
-    private int shipDamage = 10;
+    private int shipArmor = 0;
+    private int shipDamage = 0;
 
     public int getHighscore() {
         return this.highscore;

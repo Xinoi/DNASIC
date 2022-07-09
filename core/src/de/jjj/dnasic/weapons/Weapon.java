@@ -22,4 +22,10 @@ public class Weapon {
     public float getReloadTime(){
         return this.reloadTime;
     }
+    public void setReloadTime(float reloadTime) {
+        this.reloadTime = reloadTime;
+    }
+    public void decreaseReloadTime(float amount) {
+        this.reloadTime -= amount;
+    }
 }

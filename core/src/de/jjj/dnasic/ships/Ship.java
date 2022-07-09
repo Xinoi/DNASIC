@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ship extends Sprite {
-    private int health;
+    protected int health;
 
     protected float x;
     protected float y;
