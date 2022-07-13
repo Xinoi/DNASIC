@@ -29,7 +29,7 @@ public class DeathScreen extends ScreenAdapter {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        deathMessage = new Label("You is kil!", new Label.LabelStyle(DNASIC.INSTANCE.getFont(), Color.RED));
+        deathMessage = new Label("You are dead!", new Label.LabelStyle(DNASIC.INSTANCE.getFont(), Color.RED));
         deathMessage.setPosition(Gdx.graphics.getWidth() / 2 - deathMessage.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 40);
 
         returnToMenu = new TextButton("return", DNASIC.INSTANCE.getButtonStyle());
